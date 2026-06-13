@@ -4,6 +4,8 @@ import { useState, useRef, useCallback } from "react";
 import { motion, useInView, AnimatePresence } from "framer-motion";
 import Image from "next/image";
 
+const EXPO_OUT = [0.16, 1, 0.3, 1] as const;
+
 const galleryImages = [
   { src: "https://storage.googleapis.com/msgsndr/7Ejk1dufJ1zPUoyShqBe/media/68e987ad4c424dfd7288ebe8.jpeg", alt: "RENCO bathroom remodel" },
   { src: "https://storage.googleapis.com/msgsndr/7Ejk1dufJ1zPUoyShqBe/media/68e987adab9cea4f91cdaca8.jpeg", alt: "RENCO kitchen renovation" },
@@ -38,36 +40,59 @@ export default function GallerySection() {
     <section id="gallery" className="py-24 md:py-36 bg-[#0E0E0E]">
       <div className="max-w-7xl mx-auto px-6 lg:px-12">
         {/* Header */}
-        <motion.div
-          ref={ref}
-          initial={{ opacity: 0, y: 24 }}
-          animate={inView ? { opacity: 1, y: 0 } : {}}
-          transition={{ duration: 0.7 }}
-          className="mb-16"
-        >
+        <div ref={ref} className="mb-16">
+          {/* Eyebrow line + label */}
           <div className="flex items-center gap-4 mb-4">
-            <div className="w-8 h-px" style={{ background: "linear-gradient(90deg, #C9A96A, transparent)" }} />
-            <span className="font-body text-xs tracking-[0.3em] uppercase text-[#C9A96A]">
-              Our Work
-            </span>
+            <motion.div
+              className="w-8 h-px"
+              style={{ background: "linear-gradient(90deg, #C9A96A, transparent)", transformOrigin: "left" }}
+              initial={{ scaleX: 0 }}
+              animate={inView ? { scaleX: 1 } : {}}
+              transition={{ duration: 0.6, delay: 0.1, ease: EXPO_OUT }}
+            />
+            <div className="overflow-hidden">
+              <motion.span
+                className="font-body text-xs tracking-[0.3em] uppercase text-[#C9A96A] block"
+                initial={{ y: "110%" }}
+                animate={inView ? { y: "0%" } : {}}
+                transition={{ duration: 0.7, delay: 0.2, ease: EXPO_OUT }}
+              >
+                Our Work
+              </motion.span>
+            </div>
           </div>
-          <h2 className="font-display text-4xl md:text-6xl font-light text-[#F2EDE4]">
-            Gallery
-          </h2>
-          <p className="font-body text-[#9A9388] mt-4 max-w-md">
-            200+ projects across Gig Harbor &amp; greater Seattle. Every image is a real RENCO home.
-          </p>
-        </motion.div>
 
-        {/* Masonry grid */}
+          {/* H2 — clip reveal */}
+          <div className="overflow-hidden">
+            <motion.h2
+              className="font-display text-4xl md:text-6xl font-light text-[#F2EDE4] block"
+              initial={{ y: "110%" }}
+              animate={inView ? { y: "0%" } : {}}
+              transition={{ duration: 0.85, delay: 0.28, ease: EXPO_OUT }}
+            >
+              Gallery
+            </motion.h2>
+          </div>
+
+          <motion.p
+            className="font-body text-[#9A9388] mt-4 max-w-md"
+            initial={{ opacity: 0, filter: "blur(12px)", y: 12 }}
+            animate={inView ? { opacity: 1, filter: "blur(0px)", y: 0 } : {}}
+            transition={{ duration: 0.8, delay: 0.42, ease: EXPO_OUT }}
+          >
+            200+ projects across Gig Harbor &amp; greater Seattle. Every image is a real RENCO home.
+          </motion.p>
+        </div>
+
+        {/* Masonry grid — scale + opacity entrance, stagger per column */}
         <div className="columns-2 md:columns-3 lg:columns-4 gap-3 space-y-3">
           {galleryImages.map((img, i) => (
             <motion.div
               key={i}
-              initial={{ opacity: 0, y: 16 }}
-              whileInView={{ opacity: 1, y: 0 }}
+              initial={{ opacity: 0, scale: 0.92, y: 20 }}
+              whileInView={{ opacity: 1, scale: 1, y: 0 }}
               viewport={{ once: true, margin: "-40px" }}
-              transition={{ duration: 0.5, delay: (i % 4) * 0.06 }}
+              transition={{ duration: 0.65, delay: (i % 4) * 0.1, ease: EXPO_OUT }}
               className="break-inside-avoid group cursor-pointer relative overflow-hidden"
               onClick={() => openLightbox(i)}
             >

@@ -1,9 +1,11 @@
 "use client";
 
 import { useRef, useState, useEffect } from "react";
-import { useScroll } from "framer-motion";
+import { motion, useScroll, AnimatePresence } from "framer-motion";
 import Image from "next/image";
 import BeforeAfterSlider from "./BeforeAfterSlider";
+
+const EXPO_OUT = [0.16, 1, 0.3, 1] as const;
 
 const stages = [
   {
@@ -11,8 +13,8 @@ const stages = [
     number: "01",
     label: "The Before",
     title: "The room you avoid showing guests.",
-    body: "Cracked grout. Dated tile. Fixtures from another decade. You've learned to look past it — but guests notice. Every shower is a reminder of what could be.",
-    image: "/before-1.jpg",
+    body: "Cracked grout. Dated tile. Fixtures from another decade. You’ve learned to look past it — but guests notice. Every shower is a reminder of what could be.",
+    image: "https://raw.githubusercontent.com/davidk2121/renco-website/main/public/before-1.jpg",
     alt: "Dated bathroom before remodel",
     accent: "#9A9388",
   },
@@ -21,8 +23,8 @@ const stages = [
     number: "02",
     label: "The Plan",
     title: "Nothing happens until you understand it.",
-    body: "We walk every inch with you. Materials in hand. No approval signature until you've seen exactly what's going where — and why. Design that reflects how you actually live.",
-    image: "/during-plan-1.jpg",
+    body: "We walk every inch with you. Materials in hand. No approval signature until you’ve seen exactly what’s going where — and why. Design that reflects how you actually live.",
+    image: "https://raw.githubusercontent.com/davidk2121/renco-website/main/public/during-plan-1.jpg",
     alt: "Design consultation and planning phase",
     accent: "#C9A96A",
   },
@@ -31,8 +33,8 @@ const stages = [
     number: "03",
     label: "The Build",
     title: "Precision laid one tile at a time.",
-    body: "Our crew treats your home with the same care we'd give our own. Clean work. Straight lines. No shortcuts. Craftsmanship you can see in every grout joint.",
-    image: "/during-1.jpg",
+    body: "Our crew treats your home with the same care we’d give our own. Clean work. Straight lines. No shortcuts. Craftsmanship you can see in every grout joint.",
+    image: "https://raw.githubusercontent.com/davidk2121/renco-website/main/public/during-1.jpg",
     alt: "Tile installation during bathroom remodel",
     accent: "#C9A96A",
   },
@@ -41,13 +43,13 @@ const stages = [
     number: "04",
     label: "The Reveal",
     title: "Fall in love with your home again.",
-    body: "This is what it was all for. The moment you walk in and it stops you — because it's exactly what you imagined, only better.",
-    image: "/after-1.jpg",
+    body: "This is what it was all for. The moment you walk in and it stops you — because it’s exactly what you imagined, only better.",
+    image: "https://raw.githubusercontent.com/davidk2121/renco-website/main/public/after-1.jpg",
     alt: "Completed luxury bathroom remodel",
     accent: "#E2C792",
     isReveal: true,
-    beforeImage: "/before-1.jpg",
-    afterImage: "/after-1.jpg",
+    beforeImage: "https://raw.githubusercontent.com/davidk2121/renco-website/main/public/before-1.jpg",
+    afterImage: "https://raw.githubusercontent.com/davidk2121/renco-website/main/public/after-1.jpg",
   },
 ];
 
@@ -63,6 +65,7 @@ function StoryImage({ src, alt }: { src: string; alt: string }) {
             fill
             className="object-cover"
             onError={() => setErrored(true)}
+            unoptimized
           />
           <div className="absolute inset-0 bg-gradient-to-l from-transparent via-transparent to-[rgba(14,14,14,0.3)]" />
         </>
@@ -110,13 +113,26 @@ export default function StorySection() {
               className="absolute inset-0 flex flex-col lg:flex-row transition-opacity duration-500"
               style={{ opacity: i === activeStage ? 1 : 0, pointerEvents: i === activeStage ? "auto" : "none" }}
             >
+              {/* Text side — animate in when stage becomes active */}
               <div className="lg:w-1/2 flex flex-col justify-center px-6 lg:px-12 xl:px-20 pb-8 lg:pb-0 order-2 lg:order-1">
-                <div className="flex items-baseline gap-4 mb-5">
-                  <span className="font-display text-6xl font-light text-[rgba(201,169,106,0.15)]">{stage.number}</span>
-                  <span className="font-body text-xs tracking-[0.25em] uppercase" style={{ color: stage.accent }}>{stage.label}</span>
-                </div>
-                <h3 className="font-display text-2xl md:text-4xl font-light text-[#F2EDE4] leading-tight mb-5">{stage.title}</h3>
-                <p className="font-body text-[#9A9388] leading-relaxed max-w-md text-base md:text-lg">{stage.body}</p>
+                <AnimatePresence mode="wait">
+                  {i === activeStage && (
+                    <motion.div
+                      key={activeStage}
+                      initial={{ opacity: 0, y: 8 }}
+                      animate={{ opacity: 1, y: 0 }}
+                      exit={{ opacity: 0, y: -8 }}
+                      transition={{ duration: 0.5, ease: EXPO_OUT }}
+                    >
+                      <div className="flex items-baseline gap-4 mb-5">
+                        <span className="font-display text-6xl font-light text-[rgba(201,169,106,0.15)]">{stage.number}</span>
+                        <span className="font-body text-xs tracking-[0.25em] uppercase" style={{ color: stage.accent }}>{stage.label}</span>
+                      </div>
+                      <h3 className="font-display text-2xl md:text-4xl font-light text-[#F2EDE4] leading-tight mb-5">{stage.title}</h3>
+                      <p className="font-body text-[#9A9388] leading-relaxed max-w-md text-base md:text-lg">{stage.body}</p>
+                    </motion.div>
+                  )}
+                </AnimatePresence>
                 <div className="flex gap-2 mt-8">
                   {stages.map((_, di) => (
                     <div
