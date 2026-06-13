@@ -75,28 +75,6 @@ function StoryImage({ src, alt, label }: { src: string; alt: string; label: stri
   );
 }
 
-function PlaceholderImage({ label, aspect = "portrait" }: { label: string; aspect?: string }) {
-  return (
-    <div
-      className={`w-full bg-[#1a1a1a] border border-[rgba(201,169,106,0.1)] flex items-center justify-center ${
-        aspect === "portrait" ? "aspect-[3/4]" : "aspect-video"
-      }`}
-    >
-      <div className="text-center p-8">
-        <div className="w-12 h-12 mx-auto mb-3 opacity-20">
-          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1" className="text-[#C9A96A]">
-            <rect x="3" y="3" width="18" height="18" rx="2" />
-            <circle cx="8.5" cy="8.5" r="1.5" />
-            <path d="M21 15l-5-5L5 21" />
-          </svg>
-        </div>
-        <p className="font-body text-xs text-[#6B6560] tracking-wider uppercase">{label}</p>
-        <p className="font-body text-xs text-[#3a3530] mt-1">Drop image into /public/story/</p>
-      </div>
-    </div>
-  );
-}
-
 export default function StorySection() {
   const sectionRef = useRef<HTMLDivElement>(null);
   const [activeStage, setActiveStage] = useState(0);

@@ -110,10 +110,10 @@ export default function Footer() {
         {/* Bottom bar */}
         <div className="pt-8 border-t border-[rgba(201,169,106,0.08)] flex flex-col md:flex-row justify-between items-start md:items-center gap-4">
           <div className="font-body text-xs text-[#3a3530]">
-            © {year} RENCO LLC. All rights reserved.
+            &copy; {year} RENCO LLC. All rights reserved.
           </div>
           <div className="font-body text-xs text-[#3a3530] tracking-wider">
-            License # RENCOL*803BM · Gig Harbor, WA
+            License # RENCOL*803BM &middot; Gig Harbor, WA
           </div>
         </div>
       </div>
