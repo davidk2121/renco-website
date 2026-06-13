@@ -1,0 +1,168 @@
+@import url('https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,400;0,500;0,600;0,700;1,300;1,400&family=DM+Sans:ital,opsz,wght@0,9..40,300;0,9..40,400;0,9..40,500;0,9..40,600;1,9..40,300;1,9..40,400&display=swap');
+@import "tailwindcss";
+
+:root {
+  --bg-base: #0E0E0E;
+  --bg-surface: #141414;
+  --bg-card: #1a1a1a;
+  --gold: #C9A96A;
+  --gold-light: #E2C792;
+  --gold-dark: #B8945A;
+  --text-primary: #F2EDE4;
+  --text-muted: #9A9388;
+  --text-subtle: #6B6560;
+  --border: rgba(201, 169, 106, 0.15);
+}
+
+@theme inline {
+  --color-gold: #C9A96A;
+  --color-gold-light: #E2C792;
+  --color-gold-dark: #B8945A;
+  --color-bg-base: #0E0E0E;
+  --color-bg-surface: #141414;
+  --color-bg-card: #1a1a1a;
+  --color-text-primary: #F2EDE4;
+  --color-text-muted: #9A9388;
+  --font-display: 'Cormorant Garamond', Georgia, serif;
+  --font-body: 'DM Sans', system-ui, sans-serif;
+}
+
+* {
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+  box-sizing: border-box;
+}
+
+html {
+  scroll-behavior: smooth;
+  background: #0E0E0E;
+}
+
+body {
+  background: #0E0E0E;
+  color: #F2EDE4;
+  font-family: 'DM Sans', system-ui, sans-serif;
+  overflow-x: hidden;
+}
+
+h1, h2, h3, h4, h5, h6 {
+  font-family: 'Cormorant Garamond', Georgia, serif;
+}
+
+.font-display {
+  font-family: 'Cormorant Garamond', Georgia, serif;
+}
+
+.font-body {
+  font-family: 'DM Sans', system-ui, sans-serif;
+}
+
+.gold-gradient {
+  background: linear-gradient(135deg, #B8945A 0%, #E2C792 50%, #B8945A 100%);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  background-clip: text;
+}
+
+.gold-gradient-bg {
+  background: linear-gradient(135deg, #B8945A 0%, #E2C792 50%, #C9A96A 100%);
+}
+
+.gold-border {
+  border-color: rgba(201, 169, 106, 0.3);
+}
+
+/* Custom scrollbar */
+::-webkit-scrollbar { width: 6px; }
+::-webkit-scrollbar-track { background: #0E0E0E; }
+::-webkit-scrollbar-thumb { background: #3a3530; border-radius: 3px; }
+::-webkit-scrollbar-thumb:hover { background: #C9A96A; }
+
+/* Section divider */
+.divider-gold {
+  width: 60px;
+  height: 1px;
+  background: linear-gradient(90deg, transparent, #C9A96A, transparent);
+}
+
+/* Caustic light animation for hero */
+@keyframes caustic {
+  0%, 100% { transform: translate(0, 0) scale(1); opacity: 0.4; }
+  25% { transform: translate(3%, 2%) scale(1.05); opacity: 0.6; }
+  50% { transform: translate(-2%, 4%) scale(0.98); opacity: 0.3; }
+  75% { transform: translate(4%, -2%) scale(1.03); opacity: 0.5; }
+}
+
+@keyframes shimmer {
+  0% { background-position: -200% center; }
+  100% { background-position: 200% center; }
+}
+
+@keyframes float {
+  0%, 100% { transform: translateY(0px); }
+  50% { transform: translateY(-8px); }
+}
+
+@keyframes drawLine {
+  from { width: 0; }
+  to { width: 100%; }
+}
+
+@keyframes fadeUp {
+  from { opacity: 0; transform: translateY(24px); }
+  to { opacity: 1; transform: translateY(0); }
+}
+
+@keyframes tileSet {
+  from { opacity: 0; transform: scale(0.92) translateY(12px); }
+  to { opacity: 1; transform: scale(1) translateY(0); }
+}
+
+.animate-fade-up {
+  animation: fadeUp 0.7s ease forwards;
+}
+
+.animate-tile-set {
+  animation: tileSet 0.6s cubic-bezier(0.16, 1, 0.3, 1) forwards;
+}
+
+/* Before/after slider */
+.ba-slider {
+  position: relative;
+  overflow: hidden;
+  cursor: ew-resize;
+  user-select: none;
+}
+
+.ba-slider-handle {
+  position: absolute;
+  top: 0;
+  bottom: 0;
+  width: 2px;
+  background: #C9A96A;
+  z-index: 10;
+  transform: translateX(-50%);
+}
+
+.ba-slider-handle::before,
+.ba-slider-handle::after {
+  content: '';
+  position: absolute;
+  left: 50%;
+  transform: translateX(-50%);
+  width: 44px;
+  height: 44px;
+  border-radius: 50%;
+  background: linear-gradient(135deg, #B8945A, #E2C792);
+  top: 50%;
+  transform: translate(-50%, -50%);
+  box-shadow: 0 0 20px rgba(201, 169, 106, 0.5);
+}
+
+@media (prefers-reduced-motion: reduce) {
+  *, *::before, *::after {
+    animation-duration: 0.01ms !important;
+    animation-iteration-count: 1 !important;
+    transition-duration: 0.01ms !important;
+  }
+}
