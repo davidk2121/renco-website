@@ -84,7 +84,7 @@ async function generateImage(item, index) {
   if (!fs.existsSync(dir)) fs.mkdirSync(dir, { recursive: true });
 
   try {
-    const output = await replicate.run("black-forest-labs/flux-1.1-pro", {
+    const output = await replicate.run("black-forest-labs/flux-2-pro", {
       input: {
         prompt: item.prompt,
         aspect_ratio: "3:2",
