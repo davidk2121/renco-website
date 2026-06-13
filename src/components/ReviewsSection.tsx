@@ -1,7 +1,7 @@
 "use client";
 
 import { useRef } from "react";
-import { motion, useInView } from "framer-motion";
+import { motion, useInView, type Variants } from "framer-motion";
 
 const EXPO_OUT = [0.16, 1, 0.3, 1] as const;
 
@@ -32,7 +32,7 @@ const reviews = [
   },
 ];
 
-const cardVariants = {
+const cardVariants: Variants = {
   hidden: { opacity: 0, y: 36, scale: 0.96, filter: "blur(8px)" },
   visible: {
     opacity: 1,
@@ -43,7 +43,7 @@ const cardVariants = {
   },
 };
 
-const gridVariants = {
+const gridVariants: Variants = {
   hidden: {},
   visible: {
     transition: { staggerChildren: 0.1 },

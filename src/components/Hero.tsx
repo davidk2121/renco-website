@@ -1,7 +1,7 @@
 "use client";
 
 import { useEffect, useRef } from "react";
-import { motion, useReducedMotion } from "framer-motion";
+import { motion, useReducedMotion, type Variants } from "framer-motion";
 import Image from "next/image";
 
 interface HeroProps {
@@ -10,7 +10,7 @@ interface HeroProps {
 
 const EXPO_OUT = [0.16, 1, 0.3, 1] as const;
 
-const containerVariants = {
+const containerVariants: Variants = {
   hidden: {},
   visible: {
     transition: {
@@ -19,7 +19,7 @@ const containerVariants = {
   },
 };
 
-const trustItemVariants = {
+const trustItemVariants: Variants = {
   hidden: { opacity: 0, y: 16, filter: "blur(8px)" },
   visible: {
     opacity: 1,
