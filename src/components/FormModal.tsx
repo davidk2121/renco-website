@@ -1,6 +1,6 @@
 "use client";
 
-import { useEffect } from "react";
+import { useEffect, useState } from "react";
 import { motion, AnimatePresence } from "framer-motion";
 import LeadForm from "./LeadForm";
 
@@ -10,9 +10,12 @@ interface FormModalProps {
 }
 
 export default function FormModal({ open, onClose }: FormModalProps) {
+  const [openCount, setOpenCount] = useState(0);
+
   useEffect(() => {
     if (open) {
       document.body.style.overflow = "hidden";
+      setOpenCount((c) => c + 1);
     } else {
       document.body.style.overflow = "";
     }
@@ -56,7 +59,7 @@ export default function FormModal({ open, onClose }: FormModalProps) {
                 Takes 60 seconds. No pressure.
               </p>
             </div>
-            <LeadForm onClose={onClose} />
+            <LeadForm key={openCount} onClose={onClose} />
           </motion.div>
         </motion.div>
       )}

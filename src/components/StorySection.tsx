@@ -50,6 +50,31 @@ const stages = [
   },
 ];
 
+function StoryImage({ src, alt, label }: { src: string; alt: string; label: string }) {
+  const [errored, setErrored] = useState(false);
+  return (
+    <div className="relative w-full h-full">
+      {!errored && (
+        <Image
+          src={src}
+          alt={alt}
+          fill
+          className="object-cover"
+          onError={() => setErrored(true)}
+        />
+      )}
+      {errored && (
+        <div className="absolute inset-0 bg-gradient-to-br from-[#1a1a1a] to-[#141414] flex items-center justify-center">
+          <p className="text-[#3a3530] text-xs font-body tracking-wider uppercase">{label}</p>
+        </div>
+      )}
+      {!errored && (
+        <div className="absolute inset-0 bg-gradient-to-l from-transparent via-transparent to-[rgba(14,14,14,0.3)]" />
+      )}
+    </div>
+  );
+}
+
 function PlaceholderImage({ label, aspect = "portrait" }: { label: string; aspect?: string }) {
   return (
     <div
@@ -172,24 +197,7 @@ export default function StorySection() {
                           className="w-full h-full"
                         />
                       ) : (
-                        <div className="relative w-full h-full">
-                          <Image
-                            src={stage.image}
-                            alt={stage.alt}
-                            fill
-                            className="object-cover"
-                            onError={(e) => {
-                              (e.target as HTMLImageElement).style.display = "none";
-                            }}
-                          />
-                          {/* Placeholder overlay when image missing */}
-                          <div className="absolute inset-0 bg-[#1a1a1a] flex items-center justify-center"
-                            style={{ display: "none" }}>
-                            <p className="text-[#3a3530] text-xs font-body tracking-wider uppercase">{stage.label}</p>
-                          </div>
-                          {/* Gradient overlay */}
-                          <div className="absolute inset-0 bg-gradient-to-l from-transparent via-transparent to-[rgba(14,14,14,0.3)]" />
-                        </div>
+                        <StoryImage src={stage.image} alt={stage.alt} label={stage.label} />
                       )}
                     </motion.div>
                   </div>
