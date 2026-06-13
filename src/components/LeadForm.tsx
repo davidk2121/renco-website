@@ -3,9 +3,7 @@
 import { useState } from "react";
 import { motion, AnimatePresence } from "framer-motion";
 
-// ─── TODO: Replace with your GoHighLevel / LeadConnector webhook URL ───
 const LEAD_WEBHOOK_URL = "YOUR_WEBHOOK_URL_HERE";
-// ───────────────────────────────────────────────────────────────────────
 
 type FormData = {
   projectType: string;
@@ -86,7 +84,7 @@ export default function LeadForm({ onClose }: { onClose?: () => void }) {
       }
       setSubmitted(true);
     } catch {
-      setSubmitted(true); // Still show success; leads should be tracked server-side
+      setSubmitted(true);
     } finally {
       setSubmitting(false);
     }
@@ -134,7 +132,6 @@ export default function LeadForm({ onClose }: { onClose?: () => void }) {
 
   return (
     <div className="relative w-full max-w-lg mx-auto">
-      {/* Progress bar */}
       <div className="h-px bg-[rgba(201,169,106,0.1)] mb-8">
         <motion.div
           className="h-full"
@@ -144,7 +141,6 @@ export default function LeadForm({ onClose }: { onClose?: () => void }) {
         />
       </div>
 
-      {/* Step counter */}
       <div className="flex justify-between items-center mb-8">
         <span className="font-body text-xs tracking-widest uppercase text-[#6B6560]">
           Step {step + 1} of {steps.length}
@@ -162,7 +158,6 @@ export default function LeadForm({ onClose }: { onClose?: () => void }) {
         )}
       </div>
 
-      {/* Question */}
       <AnimatePresence mode="wait">
         <motion.div
           key={step}
@@ -175,7 +170,6 @@ export default function LeadForm({ onClose }: { onClose?: () => void }) {
             {steps[step].label}
           </h3>
 
-          {/* Step 0 — project type */}
           {step === 0 && (
             <div className="grid grid-cols-2 gap-3">
               {projectTypes.map((p) => (
@@ -195,7 +189,6 @@ export default function LeadForm({ onClose }: { onClose?: () => void }) {
             </div>
           )}
 
-          {/* Step 1 — timeline */}
           {step === 1 && (
             <div className="grid grid-cols-2 gap-3">
               {timelines.map((t) => (
@@ -215,7 +208,6 @@ export default function LeadForm({ onClose }: { onClose?: () => void }) {
             </div>
           )}
 
-          {/* Step 2 — budget */}
           {step === 2 && (
             <div className="grid grid-cols-2 gap-3">
               {budgets.map((b) => (
@@ -234,7 +226,6 @@ export default function LeadForm({ onClose }: { onClose?: () => void }) {
             </div>
           )}
 
-          {/* Step 3 — name */}
           {step === 3 && (
             <div className="space-y-4">
               <input
@@ -249,7 +240,6 @@ export default function LeadForm({ onClose }: { onClose?: () => void }) {
             </div>
           )}
 
-          {/* Step 4 — contact */}
           {step === 4 && (
             <div className="space-y-5">
               <input
@@ -271,7 +261,6 @@ export default function LeadForm({ onClose }: { onClose?: () => void }) {
             </div>
           )}
 
-          {/* Step 5 — location */}
           {step === 5 && (
             <div className="space-y-4">
               <input
@@ -291,7 +280,6 @@ export default function LeadForm({ onClose }: { onClose?: () => void }) {
         </motion.div>
       </AnimatePresence>
 
-      {/* Navigation — only show for text steps */}
       {step >= 3 && (
         <div className="flex items-center justify-between mt-10">
           <button
@@ -315,7 +303,6 @@ export default function LeadForm({ onClose }: { onClose?: () => void }) {
         </div>
       )}
 
-      {/* Back button for card steps */}
       {step > 0 && step < 3 && (
         <button
           onClick={back}
