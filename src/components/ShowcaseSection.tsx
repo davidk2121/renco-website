@@ -4,30 +4,32 @@ import { useRef } from "react";
 import { motion, useInView } from "framer-motion";
 import BeforeAfterSlider from "./BeforeAfterSlider";
 
+const CDN = "https://storage.googleapis.com/msgsndr/7Ejk1dufJ1zPUoyShqBe/media";
+
 const showcasePairs = [
   {
     id: 1,
     label: "Master Bath",
-    before: "/showcase/ba-bathroom-1-before.jpg",
-    after: "/showcase/ba-bathroom-1-after.jpg",
+    before: `${CDN}/68c9d7999fe3cf6ad334b37e.png`,
+    after: `${CDN}/68e987ad4c424dfd7288ebe8.jpeg`,
   },
   {
     id: 2,
     label: "Guest Bath",
-    before: "/showcase/ba-bathroom-2-before.jpg",
-    after: "/showcase/ba-bathroom-2-after.jpg",
+    before: `${CDN}/68c9d799a798eaec7919080b.png`,
+    after: `${CDN}/68e987adab9cea4f91cdaca8.jpeg`,
   },
   {
     id: 3,
     label: "Kitchen",
-    before: "/showcase/ba-kitchen-1-before.jpg",
-    after: "/showcase/ba-kitchen-1-after.jpg",
+    before: `${CDN}/68c9d7990cfa3268088443c4.png`,
+    after: `${CDN}/68e987adc49d376b887d0ca1.jpeg`,
   },
   {
     id: 4,
     label: "Full Renovation",
-    before: "/showcase/ba-fullhome-1-before.jpg",
-    after: "/showcase/ba-fullhome-1-after.jpg",
+    before: `${CDN}/68c9d7990cfa320e428443c3.png`,
+    after: `${CDN}/68e987adc04b4e96f7937227.jpeg`,
   },
 ];
 
@@ -51,7 +53,6 @@ function SliderCard({ pair, index }: { pair: typeof showcasePairs[0]; index: num
           beforeLabel="Before"
           afterLabel="After"
         />
-        {/* Hover border */}
         <div className="absolute inset-0 border border-transparent group-hover:border-[rgba(201,169,106,0.3)] transition-all duration-500 pointer-events-none" />
       </div>
       <div className="pt-4">
@@ -68,7 +69,6 @@ export default function ShowcaseSection() {
   return (
     <section id="showcase" className="py-24 md:py-36 bg-[#0E0E0E]">
       <div className="max-w-7xl mx-auto px-6 lg:px-12">
-        {/* Header */}
         <motion.div
           ref={ref}
           initial={{ opacity: 0, y: 24 }}
@@ -78,13 +78,10 @@ export default function ShowcaseSection() {
         >
           <div className="flex items-center gap-4 mb-4">
             <div className="w-8 h-px" style={{ background: "linear-gradient(90deg, #C9A96A, transparent)" }} />
-            <span className="font-body text-xs tracking-[0.3em] uppercase text-[#C9A96A]">
-              Before & After
-            </span>
+            <span className="font-body text-xs tracking-[0.3em] uppercase text-[#C9A96A]">Before & After</span>
           </div>
           <h2 className="font-display text-4xl md:text-6xl font-light text-[#F2EDE4] max-w-xl leading-tight">
-            The transformation
-            <br />
+            The transformation<br />
             <span className="gold-gradient italic">speaks for itself.</span>
           </h2>
           <p className="font-body text-[#9A9388] mt-5 max-w-md leading-relaxed">
@@ -92,7 +89,6 @@ export default function ShowcaseSection() {
           </p>
         </motion.div>
 
-        {/* Grid */}
         <div className="grid grid-cols-1 sm:grid-cols-2 gap-8 md:gap-12">
           {showcasePairs.map((pair, i) => (
             <SliderCard key={pair.id} pair={pair} index={i} />
