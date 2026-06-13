@@ -1,5 +1,3 @@
-import Image from "next/image";
-
 export default function Footer() {
   const year = new Date().getFullYear();
 
@@ -10,14 +8,10 @@ export default function Footer() {
           {/* Brand column */}
           <div className="md:col-span-2">
             <div className="flex items-center gap-3 mb-5">
-              <Image
-                src="https://assets.cdn.filesafe.space/47uN66tEffAzqM5lHNd7/media/6938aaeefb91d02fc3494f02.svg"
-                alt="RENCO"
-                width={36}
-                height={36}
-                unoptimized
-                className="opacity-80"
-              />
+              <svg viewBox="0 0 40 40" fill="none" xmlns="http://www.w3.org/2000/svg" className="w-9 h-9 opacity-80">
+                <rect x="1" y="1" width="38" height="38" stroke="#C9A96A" strokeWidth="1.2"/>
+                <text x="20" y="27" fontFamily="Georgia, serif" fontSize="20" fontWeight="400" textAnchor="middle" fill="#C9A96A">R</text>
+              </svg>
               <span className="font-display text-xl tracking-[0.22em] uppercase text-[#F2EDE4] font-light">
                 RENCO
               </span>

@@ -11,6 +11,38 @@ interface BeforeAfterSliderProps {
   afterLabel?: string;
 }
 
+function SliderImage({
+  src,
+  alt,
+  label,
+}: {
+  src: string;
+  alt: string;
+  label: string;
+}) {
+  const [errored, setErrored] = useState(false);
+  const isExternal = src.startsWith("http");
+
+  if (errored) {
+    return (
+      <div className="absolute inset-0 bg-gradient-to-br from-[#1a1a1a] to-[#141414] flex items-center justify-center">
+        <span className="text-[#3a3530] text-xs uppercase tracking-widest font-body">{label}</span>
+      </div>
+    );
+  }
+
+  return (
+    <Image
+      src={src}
+      alt={alt}
+      fill
+      className="object-cover"
+      unoptimized={isExternal}
+      onError={() => setErrored(true)}
+    />
+  );
+}
+
 export default function BeforeAfterSlider({
   before,
   after,
@@ -63,29 +95,20 @@ export default function BeforeAfterSlider({
     <div
       ref={containerRef}
       className={`relative overflow-hidden select-none ${className}`}
-      style={{ cursor: dragging ? "ew-resize" : "ew-resize" }}
+      style={{ cursor: "ew-resize" }}
       onClick={(e) => updatePosition(e.clientX)}
     >
-      {/* After image (full) */}
+      {/* After image (full background) */}
       <div className="relative w-full h-full">
-        <Image src={after} alt={afterLabel} fill className="object-cover" />
-        {/* Placeholder */}
-        <div className="absolute inset-0 bg-[#1C1A17] flex items-center justify-center"
-          style={{ zIndex: -1 }}>
-          <span className="text-[#3a3530] text-xs uppercase tracking-widest font-body">After</span>
-        </div>
+        <SliderImage src={after} alt={afterLabel} label={afterLabel} />
       </div>
 
-      {/* Before image (clipped) */}
+      {/* Before image (clipped to left portion) */}
       <div
         className="absolute inset-0 overflow-hidden"
         style={{ clipPath: `inset(0 ${100 - position}% 0 0)` }}
       >
-        <Image src={before} alt={beforeLabel} fill className="object-cover" />
-        <div className="absolute inset-0 bg-[#1C1A17] flex items-center justify-center"
-          style={{ zIndex: -1 }}>
-          <span className="text-[#3a3530] text-xs uppercase tracking-widest font-body">Before</span>
-        </div>
+        <SliderImage src={before} alt={beforeLabel} label={beforeLabel} />
       </div>
 
       {/* Divider line */}
