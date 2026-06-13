@@ -1,7 +1,7 @@
 "use client";
 
 import { useRef, useState, useEffect } from "react";
-import { motion, useScroll, useTransform, AnimatePresence } from "framer-motion";
+import { useScroll } from "framer-motion";
 import Image from "next/image";
 import BeforeAfterSlider from "./BeforeAfterSlider";
 
@@ -131,80 +131,62 @@ export default function StorySection() {
           </h2>
         </div>
 
-        {/* Stage content */}
+        {/* Stage content — all stages rendered, cross-fade via opacity */}
         <div className="flex-1 relative overflow-hidden">
-          <AnimatePresence mode="wait">
-            {stages.map((stage, i) =>
-              i === activeStage ? (
-                <motion.div
-                  key={stage.id}
-                  initial={{ opacity: 0 }}
-                  animate={{ opacity: 1 }}
-                  exit={{ opacity: 0 }}
-                  transition={{ duration: 0.5 }}
-                  className="absolute inset-0 flex flex-col lg:flex-row"
-                >
-                  {/* Text side */}
-                  <div className="lg:w-1/2 flex flex-col justify-center px-6 lg:px-12 xl:px-20 pb-8 lg:pb-0 order-2 lg:order-1">
-                    <motion.div
-                      initial={{ x: -20, opacity: 0 }}
-                      animate={{ x: 0, opacity: 1 }}
-                      transition={{ duration: 0.5, delay: 0.1 }}
-                    >
-                      <div className="flex items-baseline gap-4 mb-5">
-                        <span className="font-display text-6xl font-light text-[rgba(201,169,106,0.15)]">
-                          {stage.number}
-                        </span>
-                        <span className="font-body text-xs tracking-[0.25em] uppercase" style={{ color: stage.accent }}>
-                          {stage.label}
-                        </span>
-                      </div>
-                      <h3 className="font-display text-2xl md:text-4xl font-light text-[#F2EDE4] leading-tight mb-5">
-                        {stage.title}
-                      </h3>
-                      <p className="font-body text-[#9A9388] leading-relaxed max-w-md text-base md:text-lg">
-                        {stage.body}
-                      </p>
+          {stages.map((stage, i) => (
+            <div
+              key={stage.id}
+              className="absolute inset-0 flex flex-col lg:flex-row transition-opacity duration-500"
+              style={{ opacity: i === activeStage ? 1 : 0, pointerEvents: i === activeStage ? "auto" : "none" }}
+            >
+              {/* Text side */}
+              <div className="lg:w-1/2 flex flex-col justify-center px-6 lg:px-12 xl:px-20 pb-8 lg:pb-0 order-2 lg:order-1">
+                <div className="flex items-baseline gap-4 mb-5">
+                  <span className="font-display text-6xl font-light text-[rgba(201,169,106,0.15)]">
+                    {stage.number}
+                  </span>
+                  <span className="font-body text-xs tracking-[0.25em] uppercase" style={{ color: stage.accent }}>
+                    {stage.label}
+                  </span>
+                </div>
+                <h3 className="font-display text-2xl md:text-4xl font-light text-[#F2EDE4] leading-tight mb-5">
+                  {stage.title}
+                </h3>
+                <p className="font-body text-[#9A9388] leading-relaxed max-w-md text-base md:text-lg">
+                  {stage.body}
+                </p>
 
-                      {/* Progress dots */}
-                      <div className="flex gap-2 mt-8">
-                        {stages.map((_, di) => (
-                          <div
-                            key={di}
-                            className="h-px transition-all duration-500"
-                            style={{
-                              width: di === activeStage ? 32 : 12,
-                              background: di === activeStage ? "#C9A96A" : "rgba(201,169,106,0.2)",
-                            }}
-                          />
-                        ))}
-                      </div>
-                    </motion.div>
-                  </div>
+                {/* Progress dots */}
+                <div className="flex gap-2 mt-8">
+                  {stages.map((_, di) => (
+                    <div
+                      key={di}
+                      className="h-px transition-all duration-500"
+                      style={{
+                        width: di === activeStage ? 32 : 12,
+                        background: di === activeStage ? "#C9A96A" : "rgba(201,169,106,0.2)",
+                      }}
+                    />
+                  ))}
+                </div>
+              </div>
 
-                  {/* Image side */}
-                  <div className="lg:w-1/2 relative order-1 lg:order-2 flex-shrink-0 h-48 lg:h-auto">
-                    <motion.div
-                      initial={{ scale: 1.02, opacity: 0 }}
-                      animate={{ scale: 1, opacity: 1 }}
-                      transition={{ duration: 0.6 }}
-                      className="absolute inset-0"
-                    >
-                      {stage.isReveal ? (
-                        <BeforeAfterSlider
-                          before="/story/before-1.jpg"
-                          after="/story/after-1.jpg"
-                          className="w-full h-full"
-                        />
-                      ) : (
-                        <StoryImage src={stage.image} alt={stage.alt} label={stage.label} />
-                      )}
-                    </motion.div>
-                  </div>
-                </motion.div>
-              ) : null
-            )}
-          </AnimatePresence>
+              {/* Image side */}
+              <div className="lg:w-1/2 relative order-1 lg:order-2 flex-shrink-0 h-48 lg:h-auto">
+                <div className="absolute inset-0">
+                  {stage.isReveal ? (
+                    <BeforeAfterSlider
+                      before="/story/before-1.jpg"
+                      after="/story/after-1.jpg"
+                      className="w-full h-full"
+                    />
+                  ) : (
+                    <StoryImage src={stage.image} alt={stage.alt} label={stage.label} />
+                  )}
+                </div>
+              </div>
+            </div>
+          ))}
         </div>
       </div>
     </section>
