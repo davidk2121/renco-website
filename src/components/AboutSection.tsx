@@ -3,6 +3,8 @@
 import { useRef } from "react";
 import { motion, useInView } from "framer-motion";
 
+const EXPO_OUT = [0.16, 1, 0.3, 1] as const;
+
 const values = [
   {
     label: "Faith",
@@ -52,6 +54,23 @@ const values = [
   },
 ];
 
+const valueCardVariants = {
+  hidden: { opacity: 0, x: 32, filter: "blur(8px)" },
+  visible: {
+    opacity: 1,
+    x: 0,
+    filter: "blur(0px)",
+    transition: { type: "spring", stiffness: 260, damping: 28 },
+  },
+};
+
+const valuesGridVariants = {
+  hidden: {},
+  visible: {
+    transition: { staggerChildren: 0.1 },
+  },
+};
+
 export default function AboutSection() {
   const ref = useRef(null);
   const inView = useInView(ref, { once: true, margin: "-100px" });
@@ -61,76 +80,117 @@ export default function AboutSection() {
       <div className="max-w-7xl mx-auto px-6 lg:px-12">
         <div className="grid lg:grid-cols-2 gap-16 lg:gap-24 items-start">
           {/* Left — text */}
-          <motion.div
-            ref={ref}
-            initial={{ opacity: 0, x: -24 }}
-            animate={inView ? { opacity: 1, x: 0 } : {}}
-            transition={{ duration: 0.8, ease: [0.16, 1, 0.3, 1] }}
-          >
+          <div ref={ref}>
+            {/* Eyebrow line + label */}
             <div className="flex items-center gap-4 mb-6">
-              <div className="w-8 h-px" style={{ background: "linear-gradient(90deg, #C9A96A, transparent)" }} />
-              <span className="font-body text-xs tracking-[0.3em] uppercase text-[#C9A96A]">
-                About RENCO
-              </span>
+              <motion.div
+                className="w-8 h-px"
+                style={{ background: "linear-gradient(90deg, #C9A96A, transparent)", transformOrigin: "left" }}
+                initial={{ scaleX: 0 }}
+                animate={inView ? { scaleX: 1 } : {}}
+                transition={{ duration: 0.6, delay: 0.1, ease: EXPO_OUT }}
+              />
+              <div className="overflow-hidden">
+                <motion.span
+                  className="font-body text-xs tracking-[0.3em] uppercase text-[#C9A96A] block"
+                  initial={{ y: "110%" }}
+                  animate={inView ? { y: "0%" } : {}}
+                  transition={{ duration: 0.7, delay: 0.2, ease: EXPO_OUT }}
+                >
+                  About RENCO
+                </motion.span>
+              </div>
             </div>
 
+            {/* H2 — clip reveals per line */}
             <h2 className="font-display text-4xl md:text-5xl font-light text-[#F2EDE4] leading-tight mb-8">
-              Built on purpose.
-              <br />
-              <span className="gold-gradient italic">Backed by faith.</span>
+              <div className="overflow-hidden">
+                <motion.span
+                  className="block"
+                  initial={{ y: "110%" }}
+                  animate={inView ? { y: "0%" } : {}}
+                  transition={{ duration: 0.85, delay: 0.28, ease: EXPO_OUT }}
+                >
+                  Built on purpose.
+                </motion.span>
+              </div>
+              <div className="overflow-hidden">
+                <motion.span
+                  className="block gold-gradient italic"
+                  initial={{ y: "110%" }}
+                  animate={inView ? { y: "0%" } : {}}
+                  transition={{ duration: 0.85, delay: 0.4, ease: EXPO_OUT }}
+                >
+                  Backed by faith.
+                </motion.span>
+              </div>
             </h2>
 
+            {/* Paragraphs — blur entrance staggered */}
             <div className="space-y-5 font-body text-[#9A9388] leading-relaxed">
-              <p>
-                RENCO LLC was founded on a simple belief: the people who let you into their home deserve your absolute best. Every project — whether it&rsquo;s a single bathroom or a full renovation — gets the same dedication we&rsquo;d give our own families.
-              </p>
-              <p>
-                We&rsquo;re a family-owned contractor serving Gig Harbor and the greater Seattle area (King &amp; Pierce County). Vitaliy and David lead every project personally — you won&rsquo;t talk to a salesperson or hand your home off to a subcontractor who&rsquo;s never met you.
-              </p>
-              <p>
-                Our faith shapes the way we work. Colossians 3:17 — "whatever you do, do it with all your heart" — isn&rsquo;t a tagline. It&rsquo;s a standard that shows up in every tile joint and every conversation.
-              </p>
+              {[
+                "RENCO LLC was founded on a simple belief: the people who let you into their home deserve your absolute best. Every project — whether it’s a single bathroom or a full renovation — gets the same dedication we’d give our own families.",
+                "We’re a family-owned contractor serving Gig Harbor and the greater Seattle area (King & Pierce County). Vitaliy and David lead every project personally — you won’t talk to a salesperson or hand your home off to a subcontractor who’s never met you.",
+                "Our faith shapes the way we work. Colossians 3:17 — “whatever you do, do it with all your heart” — isn’t a tagline. It’s a standard that shows up in every tile joint and every conversation.",
+              ].map((text, i) => (
+                <motion.p
+                  key={i}
+                  initial={{ opacity: 0, filter: "blur(12px)", y: 12 }}
+                  animate={inView ? { opacity: 1, filter: "blur(0px)", y: 0 } : {}}
+                  transition={{ duration: 0.8, delay: 0.52 + i * 0.15, ease: EXPO_OUT }}
+                >
+                  {text}
+                </motion.p>
+              ))}
             </div>
 
-            {/* Faith quote */}
-            <div className="mt-10 border-l-2 border-[rgba(201,169,106,0.4)] pl-6">
+            {/* Faith quote — blur entrance */}
+            <motion.div
+              className="mt-10 border-l-2 border-[rgba(201,169,106,0.4)] pl-6"
+              initial={{ opacity: 0, filter: "blur(12px)", y: 12 }}
+              animate={inView ? { opacity: 1, filter: "blur(0px)", y: 0 } : {}}
+              transition={{ duration: 0.8, delay: 0.97, ease: EXPO_OUT }}
+            >
               <p className="font-display text-xl italic text-[#C9A96A] font-light leading-relaxed">
                 &ldquo;We don&rsquo;t just build. We build what matters.&rdquo;
               </p>
               <p className="font-body text-xs tracking-widest uppercase text-[#6B6560] mt-2">
                 Colossians 3:17
               </p>
-            </div>
+            </motion.div>
 
-            {/* Stats */}
+            {/* Stats — blur entrance stagger */}
             <div className="grid grid-cols-3 gap-6 mt-12 pt-12 border-t border-[rgba(201,169,106,0.1)]">
               {[
                 { value: "200+", label: "Projects" },
                 { value: "5.0★", label: "Google Rating" },
                 { value: "King / Pierce", label: "County" },
-              ].map((stat) => (
-                <div key={stat.label}>
+              ].map((stat, i) => (
+                <motion.div
+                  key={stat.label}
+                  initial={{ opacity: 0, filter: "blur(12px)", y: 12 }}
+                  animate={inView ? { opacity: 1, filter: "blur(0px)", y: 0 } : {}}
+                  transition={{ duration: 0.7, delay: 1.1 + i * 0.1, ease: EXPO_OUT }}
+                >
                   <div className="font-display text-2xl md:text-3xl font-light text-[#C9A96A]">{stat.value}</div>
                   <div className="font-body text-xs tracking-wider uppercase text-[#6B6560] mt-0.5">{stat.label}</div>
-                </div>
+                </motion.div>
               ))}
             </div>
-          </motion.div>
+          </div>
 
-          {/* Right — values */}
+          {/* Right — values: slide from right + blur, stagger 0.1s */}
           <motion.div
-            initial={{ opacity: 0, x: 24 }}
-            animate={inView ? { opacity: 1, x: 0 } : {}}
-            transition={{ duration: 0.8, delay: 0.2, ease: [0.16, 1, 0.3, 1] }}
             className="space-y-4"
+            initial="hidden"
+            whileInView="visible"
+            viewport={{ once: true, margin: "-80px" }}
+            variants={valuesGridVariants}
           >
-            {values.map((value, i) => (
+            {values.map((value) => (
               <motion.div
                 key={value.label}
-                initial={{ opacity: 0, y: 16 }}
-                whileInView={{ opacity: 1, y: 0 }}
-                viewport={{ once: true }}
-                transition={{ duration: 0.5, delay: i * 0.08 }}
+                variants={valueCardVariants}
                 className="group flex items-start gap-5 p-5 border border-[rgba(201,169,106,0.08)] hover:border-[rgba(201,169,106,0.25)] transition-all duration-400"
                 style={{ background: "#141414" }}
               >

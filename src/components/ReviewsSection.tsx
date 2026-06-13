@@ -3,6 +3,8 @@
 import { useRef } from "react";
 import { motion, useInView } from "framer-motion";
 
+const EXPO_OUT = [0.16, 1, 0.3, 1] as const;
+
 const reviews = [
   {
     name: "Sweet Softies",
@@ -30,6 +32,24 @@ const reviews = [
   },
 ];
 
+const cardVariants = {
+  hidden: { opacity: 0, y: 36, scale: 0.96, filter: "blur(8px)" },
+  visible: {
+    opacity: 1,
+    y: 0,
+    scale: 1,
+    filter: "blur(0px)",
+    transition: { type: "spring", stiffness: 260, damping: 28 },
+  },
+};
+
+const gridVariants = {
+  hidden: {},
+  visible: {
+    transition: { staggerChildren: 0.1 },
+  },
+};
+
 function StarRating({ count = 5 }: { count?: number }) {
   return (
     <div className="flex gap-0.5">
@@ -50,30 +70,61 @@ export default function ReviewsSection() {
     <section id="reviews" className="py-24 md:py-36" style={{ background: "#141414" }}>
       <div className="max-w-7xl mx-auto px-6 lg:px-12">
         {/* Header */}
-        <motion.div
-          ref={ref}
-          initial={{ opacity: 0, y: 24 }}
-          animate={inView ? { opacity: 1, y: 0 } : {}}
-          transition={{ duration: 0.7 }}
-          className="mb-16"
-        >
+        <div ref={ref} className="mb-16">
+          {/* Eyebrow line + label */}
           <div className="flex items-center gap-4 mb-6">
-            <div className="w-8 h-px" style={{ background: "linear-gradient(90deg, #C9A96A, transparent)" }} />
-            <span className="font-body text-xs tracking-[0.3em] uppercase text-[#C9A96A]">
-              What Clients Say
-            </span>
+            <motion.div
+              className="w-8 h-px"
+              style={{ background: "linear-gradient(90deg, #C9A96A, transparent)", transformOrigin: "left" }}
+              initial={{ scaleX: 0 }}
+              animate={inView ? { scaleX: 1 } : {}}
+              transition={{ duration: 0.6, delay: 0.1, ease: EXPO_OUT }}
+            />
+            <div className="overflow-hidden">
+              <motion.span
+                className="font-body text-xs tracking-[0.3em] uppercase text-[#C9A96A] block"
+                initial={{ y: "110%" }}
+                animate={inView ? { y: "0%" } : {}}
+                transition={{ duration: 0.7, delay: 0.2, ease: EXPO_OUT }}
+              >
+                What Clients Say
+              </motion.span>
+            </div>
           </div>
 
-          {/* Badge */}
+          {/* Badge row */}
           <div className="flex flex-col md:flex-row md:items-end gap-8 mb-8">
             <div>
+              {/* H2 — clip reveals per line */}
               <h2 className="font-display text-4xl md:text-6xl font-light text-[#F2EDE4] leading-tight">
-                5.0 Stars.
-                <br />
-                <span className="gold-gradient italic">Every time.</span>
+                <div className="overflow-hidden">
+                  <motion.span
+                    className="block"
+                    initial={{ y: "110%" }}
+                    animate={inView ? { y: "0%" } : {}}
+                    transition={{ duration: 0.85, delay: 0.28, ease: EXPO_OUT }}
+                  >
+                    5.0 Stars.
+                  </motion.span>
+                </div>
+                <div className="overflow-hidden">
+                  <motion.span
+                    className="block gold-gradient italic"
+                    initial={{ y: "110%" }}
+                    animate={inView ? { y: "0%" } : {}}
+                    transition={{ duration: 0.85, delay: 0.4, ease: EXPO_OUT }}
+                  >
+                    Every time.
+                  </motion.span>
+                </div>
               </h2>
             </div>
-            <div className="flex flex-col gap-2 md:mb-2">
+            <motion.div
+              className="flex flex-col gap-2 md:mb-2"
+              initial={{ opacity: 0, filter: "blur(12px)", y: 12 }}
+              animate={inView ? { opacity: 1, filter: "blur(0px)", y: 0 } : {}}
+              transition={{ duration: 0.8, delay: 0.55, ease: EXPO_OUT }}
+            >
               <div className="flex gap-1">
                 {Array.from({ length: 5 }).map((_, i) => (
                   <svg key={i} width="20" height="20" viewBox="0 0 14 14" fill="#C9A96A">
@@ -102,19 +153,22 @@ export default function ReviewsSection() {
                   Write a Review
                 </a>
               </div>
-            </div>
+            </motion.div>
           </div>
-        </motion.div>
+        </div>
 
-        {/* Review cards */}
-        <div className="grid md:grid-cols-2 gap-4">
-          {reviews.map((review, i) => (
+        {/* Review cards — scale + blur stagger */}
+        <motion.div
+          className="grid md:grid-cols-2 gap-4"
+          initial="hidden"
+          whileInView="visible"
+          viewport={{ once: true, margin: "-60px" }}
+          variants={gridVariants}
+        >
+          {reviews.map((review) => (
             <motion.div
               key={review.name}
-              initial={{ opacity: 0, y: 24 }}
-              whileInView={{ opacity: 1, y: 0 }}
-              viewport={{ once: true, margin: "-60px" }}
-              transition={{ duration: 0.6, delay: i * 0.1 }}
+              variants={cardVariants}
               className="group p-7 md:p-8 border border-[rgba(201,169,106,0.1)] hover:border-[rgba(201,169,106,0.25)] transition-all duration-500"
               style={{ background: "#1a1a1a" }}
             >
@@ -141,7 +195,7 @@ export default function ReviewsSection() {
               </div>
             </motion.div>
           ))}
-        </div>
+        </motion.div>
       </div>
     </section>
   );
