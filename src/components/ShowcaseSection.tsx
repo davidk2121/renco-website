@@ -26,8 +26,8 @@ const showcasePairs = [
   {
     id: 4,
     label: "Full Renovation",
-    before: "/showcase/ba-full-1-before.jpg",
-    after: "/showcase/ba-full-1-after.jpg",
+    before: "/showcase/ba-fullhome-1-before.jpg",
+    after: "/showcase/ba-fullhome-1-after.jpg",
   },
 ];
 

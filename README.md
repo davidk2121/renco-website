@@ -66,7 +66,7 @@ Drop into `/public/showcase/`:
 | `ba-bathroom-1-before.jpg` / `-after.jpg` | Master bath pair |
 | `ba-bathroom-2-before.jpg` / `-after.jpg` | Guest bath pair |
 | `ba-kitchen-1-before.jpg` / `-after.jpg` | Kitchen pair |
-| `ba-full-1-before.jpg` / `-after.jpg` | Full renovation pair |
+| `ba-fullhome-1-before.jpg` / `-after.jpg` | Full renovation pair |
 
 Aspect ratio: **4:3 landscape** works best for the sliders.
 
