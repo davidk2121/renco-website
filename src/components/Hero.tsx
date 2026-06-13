@@ -1,12 +1,33 @@
 "use client";
 
 import { useEffect, useRef } from "react";
-import { motion } from "framer-motion";
+import { motion, useReducedMotion } from "framer-motion";
 import Image from "next/image";
 
 interface HeroProps {
   onGetEstimate: () => void;
 }
+
+const EXPO_OUT = [0.16, 1, 0.3, 1] as const;
+
+const containerVariants = {
+  hidden: {},
+  visible: {
+    transition: {
+      staggerChildren: 0.08,
+    },
+  },
+};
+
+const trustItemVariants = {
+  hidden: { opacity: 0, y: 16, filter: "blur(8px)" },
+  visible: {
+    opacity: 1,
+    y: 0,
+    filter: "blur(0px)",
+    transition: { duration: 0.6, ease: EXPO_OUT },
+  },
+};
 
 export default function Hero({ onGetEstimate }: HeroProps) {
   const canvasRef = useRef<HTMLCanvasElement>(null);
@@ -101,109 +122,182 @@ export default function Hero({ onGetEstimate }: HeroProps) {
       <div className="relative z-10 max-w-7xl mx-auto px-6 lg:px-12 pt-32 pb-20 md:pt-40 md:pb-28">
         <div className="max-w-4xl">
           {/* Eyebrow */}
-          <motion.div
-            initial={{ opacity: 0, y: 16 }}
-            animate={{ opacity: 1, y: 0 }}
-            transition={{ duration: 0.7, delay: 0.2 }}
-            className="flex items-center gap-4 mb-8"
-          >
-            <div className="w-8 h-px" style={{ background: "linear-gradient(90deg, #C9A96A, transparent)" }} />
-            <span
-              className="font-body text-xs tracking-[0.3em] uppercase text-[#C9A96A]"
-            >
-              Gig Harbor · Greater Seattle
-            </span>
-          </motion.div>
+          <div className="flex items-center gap-4 mb-8">
+            {/* Gold line draw */}
+            <motion.div
+              className="w-8 h-px"
+              style={{ background: "linear-gradient(90deg, #C9A96A, transparent)", transformOrigin: "left" }}
+              initial={{ scaleX: 0 }}
+              animate={{ scaleX: 1 }}
+              transition={{ duration: 0.6, delay: 0.15, ease: EXPO_OUT }}
+            />
+            {/* Clip-path eyebrow reveal */}
+            <div className="overflow-hidden">
+              <motion.span
+                className="font-body text-xs tracking-[0.3em] uppercase text-[#C9A96A] block"
+                initial={{ y: "110%" }}
+                animate={{ y: "0%" }}
+                transition={{ duration: 0.7, delay: 0.25, ease: EXPO_OUT }}
+              >
+                Gig Harbor · Greater Seattle
+              </motion.span>
+            </div>
+          </div>
 
-          {/* Main headline */}
-          <motion.h1
-            initial={{ opacity: 0, y: 24 }}
-            animate={{ opacity: 1, y: 0 }}
-            transition={{ duration: 0.9, delay: 0.35, ease: [0.16, 1, 0.3, 1] }}
+          {/* Main headline — 2 lines, each clip-path reveal */}
+          <h1
             className="font-display font-light leading-[1.05] mb-6"
             style={{ fontSize: "clamp(3.2rem, 8vw, 7rem)", color: "#F2EDE4" }}
           >
-            Reimagine Your
-            <br />
-            <span className="gold-gradient italic">Bathroom.</span>
-          </motion.h1>
+            <div className="overflow-hidden">
+              <motion.span
+                className="block"
+                initial={{ y: "110%" }}
+                animate={{ y: "0%" }}
+                transition={{ duration: 0.9, delay: 0.35, ease: EXPO_OUT }}
+              >
+                Reimagine Your
+              </motion.span>
+            </div>
+            <div className="overflow-hidden">
+              <motion.span
+                className="block gold-gradient italic"
+                initial={{ y: "110%" }}
+                animate={{ y: "0%" }}
+                transition={{ duration: 0.9, delay: 0.47, ease: EXPO_OUT }}
+              >
+                Bathroom.
+              </motion.span>
+            </div>
+          </h1>
 
-          {/* Subheadline */}
+          {/* Subheadline — blur entrance */}
           <motion.p
-            initial={{ opacity: 0, y: 20 }}
-            animate={{ opacity: 1, y: 0 }}
-            transition={{ duration: 0.8, delay: 0.55 }}
+            initial={{ opacity: 0, filter: "blur(12px)", y: 12 }}
+            animate={{ opacity: 1, filter: "blur(0px)", y: 0 }}
+            transition={{ duration: 0.8, delay: 0.62, ease: EXPO_OUT }}
             className="font-body text-lg md:text-xl text-[#9A9388] max-w-xl leading-relaxed mb-10"
           >
             We&rsquo;re here to improve your home — and help you fall in love with it again.
           </motion.p>
 
-          {/* Tagline */}
+          {/* Tagline — staggered words */}
           <motion.div
-            initial={{ opacity: 0 }}
-            animate={{ opacity: 1 }}
-            transition={{ duration: 0.8, delay: 0.65 }}
             className="flex items-center gap-3 mb-12"
+            initial="hidden"
+            animate="visible"
+            variants={{
+              hidden: {},
+              visible: { transition: { staggerChildren: 0.1, delayChildren: 0.72 } },
+            }}
           >
             {["QUALITY", "TRUST", "CARE"].map((word, i) => (
               <div key={word} className="flex items-center gap-3">
-                {i > 0 && <span className="text-[#3a3530]">·</span>}
-                <span className="font-body text-xs tracking-[0.25em] uppercase text-[#6B6560]">
-                  {word}
-                </span>
+                {i > 0 && (
+                  <motion.span
+                    className="text-[#3a3530]"
+                    variants={{
+                      hidden: { opacity: 0 },
+                      visible: { opacity: 1, transition: { duration: 0.4 } },
+                    }}
+                  >
+                    ·
+                  </motion.span>
+                )}
+                <div className="overflow-hidden">
+                  <motion.span
+                    className="font-body text-xs tracking-[0.25em] uppercase text-[#6B6560] block"
+                    variants={{
+                      hidden: { y: "110%" },
+                      visible: { y: "0%", transition: { duration: 0.6, ease: EXPO_OUT } },
+                    }}
+                  >
+                    {word}
+                  </motion.span>
+                </div>
               </div>
             ))}
           </motion.div>
 
-          {/* CTAs */}
+          {/* CTAs — spring stagger */}
           <motion.div
-            initial={{ opacity: 0, y: 16 }}
-            animate={{ opacity: 1, y: 0 }}
-            transition={{ duration: 0.7, delay: 0.75 }}
             className="flex flex-col sm:flex-row gap-4"
+            initial="hidden"
+            animate="visible"
+            variants={{
+              hidden: {},
+              visible: { transition: { staggerChildren: 0.08, delayChildren: 0.88 } },
+            }}
           >
-            <button
-              onClick={onGetEstimate}
-              className="group relative font-body text-sm tracking-[0.15em] uppercase px-8 py-4 overflow-hidden"
-              style={{ background: "linear-gradient(135deg, #B8945A, #E2C792)", color: "#0E0E0E", fontWeight: 500 }}
+            <motion.div
+              variants={{
+                hidden: { opacity: 0, y: 20, scale: 0.96 },
+                visible: {
+                  opacity: 1, y: 0, scale: 1,
+                  transition: { type: "spring", stiffness: 260, damping: 28 },
+                },
+              }}
             >
-              <span className="relative z-10">Get My Free Estimate</span>
-              <div className="absolute inset-0 opacity-0 group-hover:opacity-100 transition-opacity duration-300"
-                style={{ background: "linear-gradient(135deg, #E2C792, #B8945A)" }} />
-            </button>
+              <button
+                onClick={onGetEstimate}
+                className="group relative font-body text-sm tracking-[0.15em] uppercase px-8 py-4 overflow-hidden"
+                style={{ background: "linear-gradient(135deg, #B8945A, #E2C792)", color: "#0E0E0E", fontWeight: 500 }}
+              >
+                <span className="relative z-10">Get My Free Estimate</span>
+                <div className="absolute inset-0 opacity-0 group-hover:opacity-100 transition-opacity duration-300"
+                  style={{ background: "linear-gradient(135deg, #E2C792, #B8945A)" }} />
+              </button>
+            </motion.div>
 
-            <a
-              href="#story"
-              className="font-body text-sm tracking-[0.15em] uppercase px-8 py-4 border border-[rgba(201,169,106,0.3)] text-[#9A9388] hover:text-[#C9A96A] hover:border-[#C9A96A] transition-all duration-300 text-center"
+            <motion.div
+              variants={{
+                hidden: { opacity: 0, y: 20, scale: 0.96 },
+                visible: {
+                  opacity: 1, y: 0, scale: 1,
+                  transition: { type: "spring", stiffness: 260, damping: 28 },
+                },
+              }}
             >
-              See Our Work
-            </a>
+              <a
+                href="#story"
+                className="font-body text-sm tracking-[0.15em] uppercase px-8 py-4 border border-[rgba(201,169,106,0.3)] text-[#9A9388] hover:text-[#C9A96A] hover:border-[#C9A96A] transition-all duration-300 text-center block"
+              >
+                See Our Work
+              </a>
+            </motion.div>
           </motion.div>
         </div>
       </div>
 
       {/* Trust strip */}
-      <motion.div
-        initial={{ opacity: 0, y: 20 }}
-        animate={{ opacity: 1, y: 0 }}
-        transition={{ duration: 0.8, delay: 1.0 }}
-        className="relative z-10 border-t border-[rgba(201,169,106,0.1)] bg-[rgba(14,14,14,0.6)] backdrop-blur-sm"
-      >
+      <div className="relative z-10 border-t border-[rgba(201,169,106,0.1)] bg-[rgba(14,14,14,0.6)] backdrop-blur-sm">
         <div className="max-w-7xl mx-auto px-6 lg:px-12">
-          <div className="grid grid-cols-2 md:grid-cols-4 divide-x divide-[rgba(201,169,106,0.1)]">
+          <motion.div
+            className="grid grid-cols-2 md:grid-cols-4 divide-x divide-[rgba(201,169,106,0.1)]"
+            initial="hidden"
+            animate="visible"
+            variants={{
+              hidden: {},
+              visible: { transition: { staggerChildren: 0.08, delayChildren: 1.05 } },
+            }}
+          >
             {trustItems.map((item) => (
-              <div key={item.value} className="px-6 py-5 text-center">
+              <motion.div
+                key={item.value}
+                className="px-6 py-5 text-center"
+                variants={trustItemVariants}
+              >
                 <div className="font-display text-xl md:text-2xl font-light text-[#C9A96A] mb-0.5">
                   {item.value}
                 </div>
                 <div className="font-body text-xs tracking-wider uppercase text-[#6B6560]">
                   {item.label}
                 </div>
-              </div>
+              </motion.div>
             ))}
-          </div>
+          </motion.div>
         </div>
-      </motion.div>
+      </div>
 
       {/* Scroll indicator */}
       <motion.div
