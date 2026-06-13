@@ -1,7 +1,7 @@
 "use client";
 
 import { useRef } from "react";
-import { motion, useInView } from "framer-motion";
+import { motion, useInView, type Variants } from "framer-motion";
 
 const EXPO_OUT = [0.16, 1, 0.3, 1] as const;
 
@@ -54,7 +54,7 @@ const values = [
   },
 ];
 
-const valueCardVariants = {
+const valueCardVariants: Variants = {
   hidden: { opacity: 0, x: 32, filter: "blur(8px)" },
   visible: {
     opacity: 1,
@@ -64,7 +64,7 @@ const valueCardVariants = {
   },
 };
 
-const valuesGridVariants = {
+const valuesGridVariants: Variants = {
   hidden: {},
   visible: {
     transition: { staggerChildren: 0.1 },
@@ -129,9 +129,9 @@ export default function AboutSection() {
             {/* Paragraphs — blur entrance staggered */}
             <div className="space-y-5 font-body text-[#9A9388] leading-relaxed">
               {[
-                "RENCO LLC was founded on a simple belief: the people who let you into their home deserve your absolute best. Every project — whether it’s a single bathroom or a full renovation — gets the same dedication we’d give our own families.",
-                "We’re a family-owned contractor serving Gig Harbor and the greater Seattle area (King & Pierce County). Vitaliy and David lead every project personally — you won’t talk to a salesperson or hand your home off to a subcontractor who’s never met you.",
-                "Our faith shapes the way we work. Colossians 3:17 — “whatever you do, do it with all your heart” — isn’t a tagline. It’s a standard that shows up in every tile joint and every conversation.",
+                "RENCO LLC was founded on a simple belief: the people who let you into their home deserve your absolute best. Every project — whether it's a single bathroom or a full renovation — gets the same dedication we'd give our own families.",
+                "We're a family-owned contractor serving Gig Harbor and the greater Seattle area (King & Pierce County). Vitaliy and David lead every project personally — you won't talk to a salesperson or hand your home off to a subcontractor who's never met you.",
+                "Our faith shapes the way we work. Colossians 3:17 — “whatever you do, do it with all your heart” — isn't a tagline. It's a standard that shows up in every tile joint and every conversation.",
               ].map((text, i) => (
                 <motion.p
                   key={i}

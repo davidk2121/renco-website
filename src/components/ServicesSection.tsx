@@ -1,7 +1,9 @@
 "use client";
 
 import { useRef } from "react";
-import { motion, useInView } from "framer-motion";
+import { motion, useInView, type Variants } from "framer-motion";
+
+const EXPO_OUT = [0.16, 1, 0.3, 1] as const;
 
 const services = [
   {
@@ -41,6 +43,26 @@ const services = [
     hero: false,
   },
 ];
+
+const cardVariants: Variants = {
+  hidden: { opacity: 0, y: 36, scale: 0.96, filter: "blur(8px)" },
+  visible: {
+    opacity: 1,
+    y: 0,
+    scale: 1,
+    filter: "blur(0px)",
+    transition: { type: "spring", stiffness: 260, damping: 28 },
+  },
+};
+
+const gridVariants: Variants = {
+  hidden: {},
+  visible: {
+    transition: {
+      staggerChildren: 0.1,
+    },
+  },
+};
 
 function ServiceIcon({ id }: { id: string }) {
   const icons: Record<string, React.ReactNode> = {
@@ -83,30 +105,46 @@ export default function ServicesSection() {
     <section id="services" className="py-24 md:py-36" style={{ background: "#141414" }}>
       <div className="max-w-7xl mx-auto px-6 lg:px-12">
         {/* Header */}
-        <motion.div
-          ref={ref}
-          initial={{ opacity: 0, y: 24 }}
-          animate={inView ? { opacity: 1, y: 0 } : {}}
-          transition={{ duration: 0.7 }}
-          className="mb-16"
-        >
+        <div ref={ref} className="mb-16">
+          {/* Gold line draw + eyebrow clip reveal */}
           <div className="flex items-center gap-4 mb-4">
-            <div className="w-8 h-px" style={{ background: "linear-gradient(90deg, #C9A96A, transparent)" }} />
-            <span className="font-body text-xs tracking-[0.3em] uppercase text-[#C9A96A]">
-              What We Build
-            </span>
+            <motion.div
+              className="w-8 h-px"
+              style={{ background: "linear-gradient(90deg, #C9A96A, transparent)", transformOrigin: "left" }}
+              initial={{ scaleX: 0 }}
+              animate={inView ? { scaleX: 1 } : {}}
+              transition={{ duration: 0.6, delay: 0.1, ease: EXPO_OUT }}
+            />
+            <div className="overflow-hidden">
+              <motion.span
+                className="font-body text-xs tracking-[0.3em] uppercase text-[#C9A96A] block"
+                initial={{ y: "110%" }}
+                animate={inView ? { y: "0%" } : {}}
+                transition={{ duration: 0.7, delay: 0.2, ease: EXPO_OUT }}
+              >
+                What We Build
+              </motion.span>
+            </div>
           </div>
-          <h2 className="font-display text-4xl md:text-6xl font-light text-[#F2EDE4]">
-            Services
-          </h2>
-        </motion.div>
+          {/* H2 clip reveal */}
+          <div className="overflow-hidden">
+            <motion.h2
+              className="font-display text-4xl md:text-6xl font-light text-[#F2EDE4] block"
+              initial={{ y: "110%" }}
+              animate={inView ? { y: "0%" } : {}}
+              transition={{ duration: 0.8, delay: 0.28, ease: EXPO_OUT }}
+            >
+              Services
+            </motion.h2>
+          </div>
+        </div>
 
-        {/* Hero service card */}
+        {/* Hero service card — scale + blur entrance */}
         <motion.div
-          initial={{ opacity: 0, y: 32 }}
-          whileInView={{ opacity: 1, y: 0 }}
+          initial={{ opacity: 0, y: 32, scale: 0.97, filter: "blur(10px)" }}
+          whileInView={{ opacity: 1, y: 0, scale: 1, filter: "blur(0px)" }}
           viewport={{ once: true, margin: "-80px" }}
-          transition={{ duration: 0.8, ease: [0.16, 1, 0.3, 1] }}
+          transition={{ duration: 0.9, ease: EXPO_OUT }}
           className="group relative mb-4 border border-[rgba(201,169,106,0.15)] p-8 md:p-12 hover:border-[rgba(201,169,106,0.4)] transition-all duration-500 overflow-hidden"
           style={{ background: "linear-gradient(135deg, #1a1a1a 0%, #161614 100%)" }}
         >
@@ -148,15 +186,18 @@ export default function ServicesSection() {
           </div>
         </motion.div>
 
-        {/* Secondary services */}
-        <div className="grid md:grid-cols-3 gap-4">
-          {services.slice(1).map((service, i) => (
+        {/* Secondary services — stagger variants */}
+        <motion.div
+          className="grid md:grid-cols-3 gap-4"
+          initial="hidden"
+          whileInView="visible"
+          viewport={{ once: true, margin: "-60px" }}
+          variants={gridVariants}
+        >
+          {services.slice(1).map((service) => (
             <motion.div
               key={service.id}
-              initial={{ opacity: 0, y: 24 }}
-              whileInView={{ opacity: 1, y: 0 }}
-              viewport={{ once: true, margin: "-60px" }}
-              transition={{ duration: 0.6, delay: i * 0.1, ease: [0.16, 1, 0.3, 1] }}
+              variants={cardVariants}
               className="group border border-[rgba(201,169,106,0.1)] p-6 md:p-8 hover:border-[rgba(201,169,106,0.3)] transition-all duration-500 cursor-default"
               style={{ background: "#1a1a1a" }}
             >
@@ -173,7 +214,7 @@ export default function ServicesSection() {
               <p className="font-body text-sm text-[#9A9388] leading-relaxed">{service.body}</p>
             </motion.div>
           ))}
-        </div>
+        </motion.div>
       </div>
     </section>
   );
