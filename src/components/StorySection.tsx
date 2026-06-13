@@ -5,8 +5,6 @@ import { useScroll } from "framer-motion";
 import Image from "next/image";
 import BeforeAfterSlider from "./BeforeAfterSlider";
 
-const CDN = "https://storage.googleapis.com/msgsndr/7Ejk1dufJ1zPUoyShqBe/media";
-
 const stages = [
   {
     id: "before",
@@ -14,7 +12,7 @@ const stages = [
     label: "The Before",
     title: "The room you avoid showing guests.",
     body: "Cracked grout. Dated tile. Fixtures from another decade. You've learned to look past it — but guests notice. Every shower is a reminder of what could be.",
-    image: `${CDN}/68c9d7999fe3cf6ad334b37e.png`,
+    image: "/before-1.jpg",
     alt: "Dated bathroom before remodel",
     accent: "#9A9388",
   },
@@ -24,7 +22,7 @@ const stages = [
     label: "The Plan",
     title: "Nothing happens until you understand it.",
     body: "We walk every inch with you. Materials in hand. No approval signature until you've seen exactly what's going where — and why. Design that reflects how you actually live.",
-    image: `${CDN}/68e987ad55c3adcbaa42b331.jpeg`,
+    image: "/during-plan-1.jpg",
     alt: "Design consultation and planning phase",
     accent: "#C9A96A",
   },
@@ -34,7 +32,7 @@ const stages = [
     label: "The Build",
     title: "Precision laid one tile at a time.",
     body: "Our crew treats your home with the same care we'd give our own. Clean work. Straight lines. No shortcuts. Craftsmanship you can see in every grout joint.",
-    image: `${CDN}/68e987adc49d37266c7d0ca2.jpeg`,
+    image: "/during-1.jpg",
     alt: "Tile installation during bathroom remodel",
     accent: "#C9A96A",
   },
@@ -44,12 +42,12 @@ const stages = [
     label: "The Reveal",
     title: "Fall in love with your home again.",
     body: "This is what it was all for. The moment you walk in and it stops you — because it's exactly what you imagined, only better.",
-    image: `${CDN}/68e987ad4c424dfd7288ebe8.jpeg`,
+    image: "/after-1.jpg",
     alt: "Completed luxury bathroom remodel",
     accent: "#E2C792",
     isReveal: true,
-    beforeImage: `${CDN}/68c9d7999fe3cf6ad334b37e.png`,
-    afterImage: `${CDN}/68e987ad4c424dfd7288ebe8.jpeg`,
+    beforeImage: "/before-1.jpg",
+    afterImage: "/after-1.jpg",
   },
 ];
 
@@ -64,7 +62,6 @@ function StoryImage({ src, alt }: { src: string; alt: string }) {
             alt={alt}
             fill
             className="object-cover"
-            unoptimized
             onError={() => setErrored(true)}
           />
           <div className="absolute inset-0 bg-gradient-to-l from-transparent via-transparent to-[rgba(14,14,14,0.3)]" />
@@ -96,7 +93,6 @@ export default function StorySection() {
   return (
     <section id="story" ref={sectionRef} className="relative" style={{ height: `${stages.length * 100}vh` }}>
       <div className="sticky top-0 h-screen overflow-hidden flex flex-col">
-        {/* Section label */}
         <div className="relative z-20 pt-20 pb-8 px-6 lg:px-12 max-w-7xl mx-auto w-full">
           <div className="flex items-center gap-4 mb-3">
             <div className="w-8 h-px" style={{ background: "linear-gradient(90deg, #C9A96A, transparent)" }} />
@@ -107,7 +103,6 @@ export default function StorySection() {
           </h2>
         </div>
 
-        {/* Stage content */}
         <div className="flex-1 relative overflow-hidden">
           {stages.map((stage, i) => (
             <div
@@ -115,7 +110,6 @@ export default function StorySection() {
               className="absolute inset-0 flex flex-col lg:flex-row transition-opacity duration-500"
               style={{ opacity: i === activeStage ? 1 : 0, pointerEvents: i === activeStage ? "auto" : "none" }}
             >
-              {/* Text side */}
               <div className="lg:w-1/2 flex flex-col justify-center px-6 lg:px-12 xl:px-20 pb-8 lg:pb-0 order-2 lg:order-1">
                 <div className="flex items-baseline gap-4 mb-5">
                   <span className="font-display text-6xl font-light text-[rgba(201,169,106,0.15)]">{stage.number}</span>
@@ -134,7 +128,6 @@ export default function StorySection() {
                 </div>
               </div>
 
-              {/* Image side */}
               <div className="lg:w-1/2 relative order-1 lg:order-2 flex-shrink-0 h-48 lg:h-auto">
                 <div className="absolute inset-0">
                   {stage.isReveal && stage.beforeImage && stage.afterImage ? (

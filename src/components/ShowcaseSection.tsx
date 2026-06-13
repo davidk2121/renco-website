@@ -4,32 +4,30 @@ import { useRef } from "react";
 import { motion, useInView } from "framer-motion";
 import BeforeAfterSlider from "./BeforeAfterSlider";
 
-const CDN = "https://storage.googleapis.com/msgsndr/7Ejk1dufJ1zPUoyShqBe/media";
-
 const showcasePairs = [
   {
     id: 1,
     label: "Master Bath",
-    before: `${CDN}/68c9d7999fe3cf6ad334b37e.png`,
-    after: `${CDN}/68e987ad4c424dfd7288ebe8.jpeg`,
+    before: "/ba-bathroom-1-before.jpg",
+    after: "/ba-bathroom-1-after.jpg",
   },
   {
     id: 2,
     label: "Guest Bath",
-    before: `${CDN}/68c9d799a798eaec7919080b.png`,
-    after: `${CDN}/68e987adab9cea4f91cdaca8.jpeg`,
+    before: "/ba-bathroom-2-before.jpg",
+    after: "/ba-bathroom-2-after.jpg",
   },
   {
     id: 3,
     label: "Kitchen",
-    before: `${CDN}/68c9d7990cfa3268088443c4.png`,
-    after: `${CDN}/68e987adc49d376b887d0ca1.jpeg`,
+    before: "/ba-kitchen-1-before.jpg",
+    after: "/ba-kitchen-1-after.jpg",
   },
   {
     id: 4,
     label: "Full Renovation",
-    before: `${CDN}/68c9d7990cfa320e428443c3.png`,
-    after: `${CDN}/68e987adc04b4e96f7937227.jpeg`,
+    before: "/ba-fullhome-1%20-before.jpg",
+    after: "/ba-fullhome-1-after.jpg",
   },
 ];
 
