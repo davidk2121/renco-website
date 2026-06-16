@@ -3,9 +3,6 @@
 import { useState } from "react";
 import { motion, AnimatePresence } from "framer-motion";
 
-// ─── TODO: Replace with your GoHighLevel / LeadConnector webhook URL ───
-const LEAD_WEBHOOK_URL = "YOUR_WEBHOOK_URL_HERE";
-// ───────────────────────────────────────────────────────────────────────
 
 type FormData = {
   projectType: string;
@@ -77,16 +74,14 @@ export default function LeadForm({ onClose }: { onClose?: () => void }) {
   const handleSubmit = async () => {
     setSubmitting(true);
     try {
-      if (LEAD_WEBHOOK_URL !== "YOUR_WEBHOOK_URL_HERE") {
-        await fetch(LEAD_WEBHOOK_URL, {
-          method: "POST",
-          headers: { "Content-Type": "application/json" },
-          body: JSON.stringify({ ...data, source: "renco-website", timestamp: new Date().toISOString() }),
-        });
-      }
+      await fetch("/api/lead", {
+        method: "POST",
+        headers: { "Content-Type": "application/json" },
+        body: JSON.stringify({ ...data, source: "renco-website", timestamp: new Date().toISOString() }),
+      });
       setSubmitted(true);
     } catch {
-      setSubmitted(true); // Still show success; leads should be tracked server-side
+      setSubmitted(true);
     } finally {
       setSubmitting(false);
     }
