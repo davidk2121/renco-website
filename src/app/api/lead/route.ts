@@ -9,7 +9,7 @@ export async function POST(req: NextRequest) {
   const { name, phone, email, zip, projectType, timeline, budget } = data;
 
   await resend.emails.send({
-    from: "RENCO Website <onboarding@resend.dev>",
+    from: "RENCO Website <leads@renco.co>",
     to: "david@renco.co",
     subject: `New Lead: ${name} — ${projectType}`,
     html: `
