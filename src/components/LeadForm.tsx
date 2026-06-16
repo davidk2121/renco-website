@@ -74,13 +74,16 @@ export default function LeadForm({ onClose }: { onClose?: () => void }) {
   const handleSubmit = async () => {
     setSubmitting(true);
     try {
-      await fetch("/api/lead", {
+      const res = await fetch("/api/lead", {
         method: "POST",
         headers: { "Content-Type": "application/json" },
         body: JSON.stringify({ ...data, source: "renco-website", timestamp: new Date().toISOString() }),
       });
+      const json = await res.json();
+      alert(JSON.stringify(json));
       setSubmitted(true);
-    } catch {
+    } catch (err) {
+      alert("Error: " + String(err));
       setSubmitted(true);
     } finally {
       setSubmitting(false);
