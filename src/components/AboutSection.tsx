@@ -152,7 +152,7 @@ export default function AboutSection() {
               transition={{ duration: 0.8, delay: 0.97, ease: EXPO_OUT }}
             >
               <p className="font-display text-xl italic text-[#C9A96A] font-light leading-relaxed">
-                &ldquo;We don&rsquo;t just build. We build what matters.&rdquo;
+                &ldquo;And whatever you do, in word or deed, do everything in the name of the Lord Jesus, giving thanks to God the Father through him.&rdquo;
               </p>
               <p className="font-body text-xs tracking-widest uppercase text-[#6B6560] mt-2">
                 Colossians 3:17
