@@ -5,7 +5,7 @@ export const dynamic = "force-dynamic";
 
 export async function POST(req: NextRequest) {
   try {
-    const resend = new Resend(process.env.RESEND_API_KEY);
+    const resend = new Resend(process.env.resend_api_key);
     const data = await req.json();
     const { name, phone, email, zip, projectType, timeline, budget } = data;
 
