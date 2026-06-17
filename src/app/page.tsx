@@ -31,13 +31,13 @@ export default function Home() {
         <Hero onGetEstimate={() => setFormOpen(true)} />
         <StorySection />
         <ProcessSection />
-        <BookCallSection />
         <ShowcaseSection />
         <ServicesSection />
         <AboutSection />
         <TeamSection />
         <ReviewsSection />
         <FAQSection />
+        <BookCallSection />
         <ServiceAreaSection />
         <GallerySection />
       </main>
