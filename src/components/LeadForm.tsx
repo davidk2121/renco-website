@@ -38,10 +38,10 @@ const timelines = [
 ];
 
 const budgets = [
-  { value: "under-15k", label: "Under $15K" },
-  { value: "15-30k", label: "$15K – $30K" },
-  { value: "30-60k", label: "$30K – $60K" },
-  { value: "60k-plus", label: "$60K+" },
+  { value: "under-25k", label: "Under $25K" },
+  { value: "25-50k", label: "$25K – $50K" },
+  { value: "50-100k", label: "$50K – $100K" },
+  { value: "100k-plus", label: "$100K+" },
 ];
 
 export default function LeadForm({ onClose }: { onClose?: () => void }) {
