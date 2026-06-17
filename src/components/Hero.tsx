@@ -166,7 +166,7 @@ export default function Hero({ onGetEstimate }: HeroProps) {
                 animate={{ y: "0%" }}
                 transition={{ duration: 0.9, delay: 0.47, ease: EXPO_OUT }}
               >
-                Bathroom.
+                Home.
               </motion.span>
             </div>
           </h1>
