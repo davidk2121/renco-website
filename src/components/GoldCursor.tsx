@@ -1,8 +1,9 @@
 "use client";
 
-import { useEffect, useRef } from "react";
+import { useEffect, useRef, useState } from "react";
 
 export default function GoldCursor() {
+  const [enabled, setEnabled] = useState(false);
   const dotRef = useRef<HTMLDivElement>(null);
   const ringRef = useRef<HTMLDivElement>(null);
 
@@ -20,6 +21,8 @@ export default function GoldCursor() {
       window.matchMedia("(pointer: coarse)").matches;
 
     if (isTouch) return;
+
+    setEnabled(true);
 
     // Inject cursor: none globally
     const style = document.createElement("style");
@@ -70,6 +73,8 @@ export default function GoldCursor() {
       if (injected) injected.remove();
     };
   }, []);
+
+  if (!enabled) return null;
 
   return (
     <>
