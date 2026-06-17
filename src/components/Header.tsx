@@ -22,6 +22,8 @@ export default function Header({ onGetEstimate }: HeaderProps) {
     { label: "Services", href: "#services" },
     { label: "About", href: "#about" },
     { label: "Reviews", href: "#reviews" },
+    { label: "Blog", href: "/blog" },
+    { label: "Areas", href: "/#service-area" },
   ];
 
   return (

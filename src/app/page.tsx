@@ -15,12 +15,16 @@ import CTASection from "@/components/CTASection";
 import Footer from "@/components/Footer";
 import FormModal from "@/components/FormModal";
 import StickyCTA from "@/components/StickyCTA";
+import ExitIntentPopup from "@/components/ExitIntentPopup";
+import IntroScreen from "@/components/IntroScreen";
+import ServiceAreaSection from "@/components/ServiceAreaSection";
 
 export default function Home() {
   const [formOpen, setFormOpen] = useState(false);
 
   return (
     <>
+      <IntroScreen />
       <Header onGetEstimate={() => setFormOpen(true)} />
       <main>
         <Hero onGetEstimate={() => setFormOpen(true)} />
@@ -33,10 +37,12 @@ export default function Home() {
         <FAQSection />
         <GallerySection />
         <CTASection />
+        <ServiceAreaSection />
       </main>
       <Footer />
       <FormModal open={formOpen} onClose={() => setFormOpen(false)} />
       <StickyCTA onGetEstimate={() => setFormOpen(true)} />
+      <ExitIntentPopup onGetEstimate={() => setFormOpen(true)} />
     </>
   );
 }

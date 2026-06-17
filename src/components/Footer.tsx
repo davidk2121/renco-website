@@ -31,13 +31,11 @@ export default function Footer() {
           <div>
             <h4 className="font-body text-xs tracking-[0.25em] uppercase text-[#C9A96A] mb-5">Services</h4>
             <ul className="space-y-3">
-              {["Bathroom Remodel", "Kitchen Remodel", "Exterior Remodel", "Full-Home Renovation"].map((s) => (
-                <li key={s}>
-                  <a href="#services" className="font-body text-sm text-[#9A9388] hover:text-[#C9A96A] transition-colors">
-                    {s}
-                  </a>
-                </li>
-              ))}
+              <li><a href="/bathroom-remodel-gig-harbor" className="font-body text-sm text-[#9A9388] hover:text-[#C9A96A] transition-colors">Bathroom Remodel</a></li>
+              <li><a href="/kitchen-remodel-seattle" className="font-body text-sm text-[#9A9388] hover:text-[#C9A96A] transition-colors">Kitchen Remodel</a></li>
+              <li><a href="/exterior-remodel-gig-harbor" className="font-body text-sm text-[#9A9388] hover:text-[#C9A96A] transition-colors">Exterior Remodel</a></li>
+              <li><a href="/full-home-renovation-seattle" className="font-body text-sm text-[#9A9388] hover:text-[#C9A96A] transition-colors">Full-Home Renovation</a></li>
+              <li><a href="/blog" className="font-body text-sm text-[#9A9388] hover:text-[#C9A96A] transition-colors">Blog</a></li>
             </ul>
           </div>
 
