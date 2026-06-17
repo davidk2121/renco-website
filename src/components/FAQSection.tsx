@@ -20,7 +20,7 @@ const faqs = [
   },
   {
     q: "Do you use subcontractors?",
-    a: "Rarely, and only trusted partners we've worked with for years. Vitaliy and David are on-site personally for every project.",
+    a: "Yes — for specialized trades like tile, electrical, and plumbing. Every partner has been vetted over years of working together. Vitaliy and David are on-site personally to oversee all work and make sure the standard never slips.",
   },
   {
     q: "What areas do you serve?",
