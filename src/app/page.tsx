@@ -12,6 +12,8 @@ import ReviewsSection from "@/components/ReviewsSection";
 import FAQSection from "@/components/FAQSection";
 import GallerySection from "@/components/GallerySection";
 import CTASection from "@/components/CTASection";
+import TeamSection from "@/components/TeamSection";
+import BookCallSection from "@/components/BookCallSection";
 import Footer from "@/components/Footer";
 import FormModal from "@/components/FormModal";
 import StickyCTA from "@/components/StickyCTA";
@@ -33,10 +35,12 @@ export default function Home() {
         <ShowcaseSection />
         <ServicesSection />
         <AboutSection />
+        <TeamSection />
         <ReviewsSection />
         <FAQSection />
         <GallerySection />
         <CTASection />
+        <BookCallSection />
         <ServiceAreaSection />
       </main>
       <Footer />
