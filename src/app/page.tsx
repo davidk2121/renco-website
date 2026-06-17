@@ -11,7 +11,6 @@ import AboutSection from "@/components/AboutSection";
 import ReviewsSection from "@/components/ReviewsSection";
 import FAQSection from "@/components/FAQSection";
 import GallerySection from "@/components/GallerySection";
-import CTASection from "@/components/CTASection";
 import TeamSection from "@/components/TeamSection";
 import BookCallSection from "@/components/BookCallSection";
 import Footer from "@/components/Footer";
@@ -32,16 +31,15 @@ export default function Home() {
         <Hero onGetEstimate={() => setFormOpen(true)} />
         <StorySection />
         <ProcessSection />
+        <BookCallSection />
         <ShowcaseSection />
         <ServicesSection />
         <AboutSection />
         <TeamSection />
         <ReviewsSection />
         <FAQSection />
-        <GallerySection />
-        <CTASection />
-        <BookCallSection />
         <ServiceAreaSection />
+        <GallerySection />
       </main>
       <Footer />
       <FormModal open={formOpen} onClose={() => setFormOpen(false)} />

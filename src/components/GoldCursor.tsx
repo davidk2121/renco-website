@@ -92,7 +92,7 @@ export default function GoldCursor() {
           backgroundColor: "#E2C792",
           boxShadow: "0 0 8px rgba(226,199,146,0.9), 0 0 2px rgba(0,0,0,0.5)",
           pointerEvents: "none",
-          zIndex: 9999,
+          zIndex: 99999,
           willChange: "transform",
         }}
       />
@@ -110,7 +110,7 @@ export default function GoldCursor() {
           border: "2px solid rgba(226,199,146,0.7)",
           backgroundColor: "transparent",
           pointerEvents: "none",
-          zIndex: 9999,
+          zIndex: 99999,
           willChange: "transform",
         }}
       />
