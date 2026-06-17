@@ -51,10 +51,10 @@ export default function GoldCursor() {
       ring.current.y = lerp(ring.current.y, mouse.current.y, 0.12);
 
       if (dotRef.current) {
-        dotRef.current.style.transform = `translate(${mouse.current.x - 4}px, ${mouse.current.y - 4}px) scale(${scale.current})`;
+        dotRef.current.style.transform = `translate(${mouse.current.x - 6}px, ${mouse.current.y - 6}px) scale(${scale.current})`;
       }
       if (ringRef.current) {
-        ringRef.current.style.transform = `translate(${ring.current.x - 16}px, ${ring.current.y - 16}px) scale(${scale.current})`;
+        ringRef.current.style.transform = `translate(${ring.current.x - 20}px, ${ring.current.y - 20}px) scale(${scale.current})`;
       }
 
       rafId.current = requestAnimationFrame(loop);
@@ -81,10 +81,11 @@ export default function GoldCursor() {
           position: "fixed",
           top: 0,
           left: 0,
-          width: 8,
-          height: 8,
+          width: 12,
+          height: 12,
           borderRadius: "50%",
-          backgroundColor: "rgba(201,169,106,0.8)",
+          backgroundColor: "#E2C792",
+          boxShadow: "0 0 8px rgba(226,199,146,0.9), 0 0 2px rgba(0,0,0,0.5)",
           pointerEvents: "none",
           zIndex: 9999,
           willChange: "transform",
@@ -98,10 +99,10 @@ export default function GoldCursor() {
           position: "fixed",
           top: 0,
           left: 0,
-          width: 32,
-          height: 32,
+          width: 40,
+          height: 40,
           borderRadius: "50%",
-          border: "1.5px solid rgba(201,169,106,0.3)",
+          border: "2px solid rgba(226,199,146,0.7)",
           backgroundColor: "transparent",
           pointerEvents: "none",
           zIndex: 9999,
