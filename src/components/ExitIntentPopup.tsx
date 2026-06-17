@@ -38,6 +38,9 @@ export default function ExitIntentPopup({ onGetEstimate }: ExitIntentPopupProps)
     if (sessionStorage.getItem("exitIntentShown")) return;
 
     const handleMouseLeave = (e: MouseEvent) => {
+      // Re-check at trigger time — a form submit or Calendly booking may have
+      // set this flag after mount.
+      if (sessionStorage.getItem("exitIntentShown")) return;
       if (e.clientY < 20) {
         sessionStorage.setItem("exitIntentShown", "true");
         setVisible(true);

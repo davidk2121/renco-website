@@ -24,6 +24,15 @@ export default function BookCallSection() {
     link.rel = "stylesheet";
     link.href = "https://assets.calendly.com/assets/external/widget.css";
     document.head.appendChild(link);
+
+    // Suppress the exit-intent popup once a call is booked
+    const onCalendly = (e: MessageEvent) => {
+      if (e.data?.event === "calendly.event_scheduled") {
+        try { sessionStorage.setItem("exitIntentShown", "true"); } catch {}
+      }
+    };
+    window.addEventListener("message", onCalendly);
+    return () => window.removeEventListener("message", onCalendly);
   }, []);
 
   return (

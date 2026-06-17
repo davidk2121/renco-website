@@ -79,6 +79,8 @@ export default function LeadForm({ onClose }: { onClose?: () => void }) {
         headers: { "Content-Type": "application/json" },
         body: JSON.stringify({ ...data, source: "renco-website", timestamp: new Date().toISOString() }),
       });
+      // Suppress the exit-intent popup once a lead has been captured
+      try { sessionStorage.setItem("exitIntentShown", "true"); } catch {}
       setSubmitted(true);
     } catch {
       setSubmitted(true);
