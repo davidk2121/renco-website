@@ -1,5 +1,4 @@
 import type { Metadata, Viewport } from "next";
-import GoldCursorLoader from "@/components/GoldCursorLoader";
 import "./globals.css";
 
 export const viewport: Viewport = {
@@ -71,7 +70,6 @@ export default function RootLayout({
         <link rel="preconnect" href="https://fonts.gstatic.com" crossOrigin="anonymous" />
       </head>
       <body className="min-h-full antialiased" style={{ background: '#0E0E0E', color: '#F2EDE4' }}>
-        <GoldCursorLoader />
         {children}
       </body>
     </html>
