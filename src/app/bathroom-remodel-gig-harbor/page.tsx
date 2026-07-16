@@ -1,15 +1,72 @@
 import type { Metadata } from "next";
 import Link from "next/link";
 
+const description =
+  "Expert bathroom remodeling in Gig Harbor, WA. Custom tile, walk-in showers, vanities & more. Licensed, family-owned, 5.0★ on Google. Free estimate.";
+
 export const metadata: Metadata = {
   title: "Bathroom Remodel Gig Harbor | RENCO LLC — 5.0★ Rated",
-  description:
-    "Expert bathroom remodeling in Gig Harbor, WA. Custom tile, walk-in showers, vanities & more. Licensed, family-owned, 5.0★ on Google. Free estimate.",
+  description,
+  alternates: {
+    canonical: "/bathroom-remodel-gig-harbor",
+  },
+  openGraph: {
+    title: "Bathroom Remodel Gig Harbor | RENCO LLC — 5.0★ Rated",
+    description,
+    type: "website",
+    url: "https://renco.co/bathroom-remodel-gig-harbor",
+    siteName: "RENCO LLC",
+  },
+  twitter: {
+    card: "summary_large_image",
+    title: "Bathroom Remodel Gig Harbor | RENCO LLC — 5.0★ Rated",
+    description,
+  },
+};
+
+const serviceSchema = {
+  "@context": "https://schema.org",
+  "@type": "Service",
+  serviceType: "Bathroom Remodeling",
+  name: "Bathroom Remodel in Gig Harbor",
+  description,
+  provider: {
+    "@type": "GeneralContractor",
+    name: "RENCO LLC",
+    telephone: "+12533892606",
+    url: "https://renco.co",
+  },
+  areaServed: [
+    { "@type": "City", name: "Gig Harbor" },
+    { "@type": "AdministrativeArea", name: "Pierce County" },
+  ],
+};
+
+const breadcrumbSchema = {
+  "@context": "https://schema.org",
+  "@type": "BreadcrumbList",
+  itemListElement: [
+    { "@type": "ListItem", position: 1, name: "Home", item: "https://renco.co" },
+    {
+      "@type": "ListItem",
+      position: 2,
+      name: "Bathroom Remodel Gig Harbor",
+      item: "https://renco.co/bathroom-remodel-gig-harbor",
+    },
+  ],
 };
 
 export default function BathroomRemodelGigHarbor() {
   return (
     <div style={{ background: "#0E0E0E", color: "#F2EDE4", minHeight: "100vh" }}>
+      <script
+        type="application/ld+json"
+        dangerouslySetInnerHTML={{ __html: JSON.stringify(serviceSchema) }}
+      />
+      <script
+        type="application/ld+json"
+        dangerouslySetInnerHTML={{ __html: JSON.stringify(breadcrumbSchema) }}
+      />
       {/* Header Nav */}
       <nav className="px-6 py-4 flex items-center justify-between max-w-6xl mx-auto">
         <Link href="/" className="font-display text-xl" style={{ color: "#C9A96A" }}>

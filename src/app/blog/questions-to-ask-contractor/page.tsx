@@ -1,10 +1,71 @@
 import type { Metadata } from "next";
 import Link from "next/link";
 
+const description =
+  "Before you sign a remodeling contract, ask these 10 questions. They separate legitimate contractors from the ones you'll regret hiring — and protect your home and your money.";
+const title =
+  "10 Questions to Ask Before Hiring a Home Remodeling Contractor | RENCO LLC";
+const url = "https://renco.co/blog/questions-to-ask-contractor";
+
 export const metadata: Metadata = {
-  title: "10 Questions to Ask Before Hiring a Home Remodeling Contractor | RENCO LLC",
-  description:
-    "Before you sign a remodeling contract, ask these 10 questions. They separate legitimate contractors from the ones you'll regret hiring — and protect your home and your money.",
+  title,
+  description,
+  alternates: {
+    canonical: "/blog/questions-to-ask-contractor",
+  },
+  openGraph: {
+    title,
+    description,
+    type: "article",
+    url,
+    siteName: "RENCO LLC",
+  },
+  twitter: {
+    card: "summary_large_image",
+    title,
+    description,
+  },
+};
+
+const blogPostingSchema = {
+  "@context": "https://schema.org",
+  "@type": "BlogPosting",
+  headline: "10 Questions to Ask Before Hiring a Home Remodeling Contractor",
+  description,
+  image: "https://renco.co/og-image.png",
+  datePublished: "2025-01-15",
+  author: {
+    "@type": "Organization",
+    name: "RENCO LLC",
+    url: "https://renco.co",
+  },
+  publisher: {
+    "@type": "Organization",
+    name: "RENCO LLC",
+    logo: {
+      "@type": "ImageObject",
+      url: "https://renco.co/og-image.png",
+    },
+  },
+  mainEntityOfPage: {
+    "@type": "WebPage",
+    "@id": url,
+  },
+};
+
+const breadcrumbSchema = {
+  "@context": "https://schema.org",
+  "@type": "BreadcrumbList",
+  itemListElement: [
+    { "@type": "ListItem", position: 1, name: "Home", item: "https://renco.co" },
+    { "@type": "ListItem", position: 2, name: "Blog", item: "https://renco.co/blog" },
+    {
+      "@type": "ListItem",
+      position: 3,
+      name: "Questions to Ask a Contractor",
+      item: url,
+    },
+  ],
 };
 
 const questions = [
@@ -53,6 +114,14 @@ const questions = [
 export default function QuestionsToAskContractor() {
   return (
     <div style={{ background: "#0E0E0E", color: "#F2EDE4", minHeight: "100vh" }}>
+      <script
+        type="application/ld+json"
+        dangerouslySetInnerHTML={{ __html: JSON.stringify(blogPostingSchema) }}
+      />
+      <script
+        type="application/ld+json"
+        dangerouslySetInnerHTML={{ __html: JSON.stringify(breadcrumbSchema) }}
+      />
       {/* Header Nav */}
       <nav className="px-6 py-4 flex items-center justify-between max-w-5xl mx-auto">
         <Link href="/" className="font-display text-xl" style={{ color: "#C9A96A" }}>

@@ -1,15 +1,72 @@
 import type { Metadata } from "next";
 import Link from "next/link";
 
+const description =
+  "Complete home renovations in Seattle & greater King County. One contractor, one vision. 200+ projects completed. 5.0★ rated. Get your free estimate.";
+
 export const metadata: Metadata = {
   title: "Full Home Renovation Seattle | RENCO LLC — Licensed Contractor",
-  description:
-    "Complete home renovations in Seattle & greater King County. One contractor, one vision. 200+ projects completed. 5.0★ rated. Get your free estimate.",
+  description,
+  alternates: {
+    canonical: "/full-home-renovation-seattle",
+  },
+  openGraph: {
+    title: "Full Home Renovation Seattle | RENCO LLC — Licensed Contractor",
+    description,
+    type: "website",
+    url: "https://renco.co/full-home-renovation-seattle",
+    siteName: "RENCO LLC",
+  },
+  twitter: {
+    card: "summary_large_image",
+    title: "Full Home Renovation Seattle | RENCO LLC — Licensed Contractor",
+    description,
+  },
+};
+
+const serviceSchema = {
+  "@context": "https://schema.org",
+  "@type": "Service",
+  serviceType: "Full Home Renovation",
+  name: "Full Home Renovation in Seattle",
+  description,
+  provider: {
+    "@type": "GeneralContractor",
+    name: "RENCO LLC",
+    telephone: "+12533892606",
+    url: "https://renco.co",
+  },
+  areaServed: [
+    { "@type": "City", name: "Seattle" },
+    { "@type": "AdministrativeArea", name: "King County" },
+  ],
+};
+
+const breadcrumbSchema = {
+  "@context": "https://schema.org",
+  "@type": "BreadcrumbList",
+  itemListElement: [
+    { "@type": "ListItem", position: 1, name: "Home", item: "https://renco.co" },
+    {
+      "@type": "ListItem",
+      position: 2,
+      name: "Full Home Renovation Seattle",
+      item: "https://renco.co/full-home-renovation-seattle",
+    },
+  ],
 };
 
 export default function FullHomeRenovationSeattle() {
   return (
     <div style={{ background: "#0E0E0E", color: "#F2EDE4", minHeight: "100vh" }}>
+      <script
+        type="application/ld+json"
+        dangerouslySetInnerHTML={{ __html: JSON.stringify(serviceSchema) }}
+      />
+      <script
+        type="application/ld+json"
+        dangerouslySetInnerHTML={{ __html: JSON.stringify(breadcrumbSchema) }}
+      />
       {/* Header Nav */}
       <nav className="px-6 py-4 flex items-center justify-between max-w-6xl mx-auto">
         <Link href="/" className="font-display text-xl" style={{ color: "#C9A96A" }}>

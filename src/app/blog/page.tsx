@@ -1,10 +1,27 @@
 import type { Metadata } from "next";
 import Link from "next/link";
 
+const description =
+  "Expert tips and guides on bathroom remodeling, kitchen renovations, and home improvement in Gig Harbor and Seattle.";
+
 export const metadata: Metadata = {
   title: "Remodeling Blog | RENCO LLC",
-  description:
-    "Expert tips and guides on bathroom remodeling, kitchen renovations, and home improvement in Gig Harbor and Seattle.",
+  description,
+  alternates: {
+    canonical: "/blog",
+  },
+  openGraph: {
+    title: "Remodeling Blog | RENCO LLC",
+    description,
+    type: "website",
+    url: "https://renco.co/blog",
+    siteName: "RENCO LLC",
+  },
+  twitter: {
+    card: "summary_large_image",
+    title: "Remodeling Blog | RENCO LLC",
+    description,
+  },
 };
 
 const posts = [

@@ -1,15 +1,72 @@
 import type { Metadata } from "next";
 import Link from "next/link";
 
+const description =
+  "Custom kitchen remodeling in Seattle and King County. Cabinets, countertops, islands & full redesigns. 200+ projects, 5.0★ rated. Get a free estimate.";
+
 export const metadata: Metadata = {
   title: "Kitchen Remodel Seattle & King County | RENCO LLC",
-  description:
-    "Custom kitchen remodeling in Seattle and King County. Cabinets, countertops, islands & full redesigns. 200+ projects, 5.0★ rated. Get a free estimate.",
+  description,
+  alternates: {
+    canonical: "/kitchen-remodel-seattle",
+  },
+  openGraph: {
+    title: "Kitchen Remodel Seattle & King County | RENCO LLC",
+    description,
+    type: "website",
+    url: "https://renco.co/kitchen-remodel-seattle",
+    siteName: "RENCO LLC",
+  },
+  twitter: {
+    card: "summary_large_image",
+    title: "Kitchen Remodel Seattle & King County | RENCO LLC",
+    description,
+  },
+};
+
+const serviceSchema = {
+  "@context": "https://schema.org",
+  "@type": "Service",
+  serviceType: "Kitchen Remodeling",
+  name: "Kitchen Remodel in Seattle",
+  description,
+  provider: {
+    "@type": "GeneralContractor",
+    name: "RENCO LLC",
+    telephone: "+12533892606",
+    url: "https://renco.co",
+  },
+  areaServed: [
+    { "@type": "City", name: "Seattle" },
+    { "@type": "AdministrativeArea", name: "King County" },
+  ],
+};
+
+const breadcrumbSchema = {
+  "@context": "https://schema.org",
+  "@type": "BreadcrumbList",
+  itemListElement: [
+    { "@type": "ListItem", position: 1, name: "Home", item: "https://renco.co" },
+    {
+      "@type": "ListItem",
+      position: 2,
+      name: "Kitchen Remodel Seattle",
+      item: "https://renco.co/kitchen-remodel-seattle",
+    },
+  ],
 };
 
 export default function KitchenRemodelSeattle() {
   return (
     <div style={{ background: "#0E0E0E", color: "#F2EDE4", minHeight: "100vh" }}>
+      <script
+        type="application/ld+json"
+        dangerouslySetInnerHTML={{ __html: JSON.stringify(serviceSchema) }}
+      />
+      <script
+        type="application/ld+json"
+        dangerouslySetInnerHTML={{ __html: JSON.stringify(breadcrumbSchema) }}
+      />
       {/* Header Nav */}
       <nav className="px-6 py-4 flex items-center justify-between max-w-6xl mx-auto">
         <Link href="/" className="font-display text-xl" style={{ color: "#C9A96A" }}>

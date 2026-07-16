@@ -1,15 +1,84 @@
 import type { Metadata } from "next";
 import Link from "next/link";
 
+const description =
+  "Bathroom remodel costs in Gig Harbor range from $5K for a cosmetic refresh to $50K+ for a full spa build. Learn what drives the price and how to avoid costly mistakes.";
+const title =
+  "How Much Does a Bathroom Remodel Cost in Gig Harbor? (2025 Guide) | RENCO LLC";
+const url = "https://renco.co/blog/bathroom-remodel-cost-gig-harbor";
+
 export const metadata: Metadata = {
-  title: "How Much Does a Bathroom Remodel Cost in Gig Harbor? (2025 Guide) | RENCO LLC",
-  description:
-    "Bathroom remodel costs in Gig Harbor range from $5K for a cosmetic refresh to $50K+ for a full spa build. Learn what drives the price and how to avoid costly mistakes.",
+  title,
+  description,
+  alternates: {
+    canonical: "/blog/bathroom-remodel-cost-gig-harbor",
+  },
+  openGraph: {
+    title,
+    description,
+    type: "article",
+    url,
+    siteName: "RENCO LLC",
+  },
+  twitter: {
+    card: "summary_large_image",
+    title,
+    description,
+  },
+};
+
+const blogPostingSchema = {
+  "@context": "https://schema.org",
+  "@type": "BlogPosting",
+  headline: "How Much Does a Bathroom Remodel Cost in Gig Harbor? (2025 Guide)",
+  description,
+  image: "https://renco.co/og-image.png",
+  datePublished: "2025-01-15",
+  author: {
+    "@type": "Organization",
+    name: "RENCO LLC",
+    url: "https://renco.co",
+  },
+  publisher: {
+    "@type": "Organization",
+    name: "RENCO LLC",
+    logo: {
+      "@type": "ImageObject",
+      url: "https://renco.co/og-image.png",
+    },
+  },
+  mainEntityOfPage: {
+    "@type": "WebPage",
+    "@id": url,
+  },
+};
+
+const breadcrumbSchema = {
+  "@context": "https://schema.org",
+  "@type": "BreadcrumbList",
+  itemListElement: [
+    { "@type": "ListItem", position: 1, name: "Home", item: "https://renco.co" },
+    { "@type": "ListItem", position: 2, name: "Blog", item: "https://renco.co/blog" },
+    {
+      "@type": "ListItem",
+      position: 3,
+      name: "Bathroom Remodel Cost in Gig Harbor",
+      item: url,
+    },
+  ],
 };
 
 export default function BathroomRemodelCostGigHarbor() {
   return (
     <div style={{ background: "#0E0E0E", color: "#F2EDE4", minHeight: "100vh" }}>
+      <script
+        type="application/ld+json"
+        dangerouslySetInnerHTML={{ __html: JSON.stringify(blogPostingSchema) }}
+      />
+      <script
+        type="application/ld+json"
+        dangerouslySetInnerHTML={{ __html: JSON.stringify(breadcrumbSchema) }}
+      />
       {/* Header Nav */}
       <nav className="px-6 py-4 flex items-center justify-between max-w-5xl mx-auto">
         <Link href="/" className="font-display text-xl" style={{ color: "#C9A96A" }}>

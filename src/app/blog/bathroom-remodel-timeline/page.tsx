@@ -1,10 +1,71 @@
 import type { Metadata } from "next";
 import Link from "next/link";
 
+const description =
+  "Most bathroom remodels take 3–6 weeks from demo to final walkthrough. Here's a phase-by-phase breakdown of what to expect — and what causes delays.";
+const title =
+  "How Long Does a Bathroom Remodel Take? A Realistic Timeline | RENCO LLC";
+const url = "https://renco.co/blog/bathroom-remodel-timeline";
+
 export const metadata: Metadata = {
-  title: "How Long Does a Bathroom Remodel Take? A Realistic Timeline | RENCO LLC",
-  description:
-    "Most bathroom remodels take 3–6 weeks from demo to final walkthrough. Here's a phase-by-phase breakdown of what to expect — and what causes delays.",
+  title,
+  description,
+  alternates: {
+    canonical: "/blog/bathroom-remodel-timeline",
+  },
+  openGraph: {
+    title,
+    description,
+    type: "article",
+    url,
+    siteName: "RENCO LLC",
+  },
+  twitter: {
+    card: "summary_large_image",
+    title,
+    description,
+  },
+};
+
+const blogPostingSchema = {
+  "@context": "https://schema.org",
+  "@type": "BlogPosting",
+  headline: "How Long Does a Bathroom Remodel Take? A Realistic Timeline",
+  description,
+  image: "https://renco.co/og-image.png",
+  datePublished: "2025-01-15",
+  author: {
+    "@type": "Organization",
+    name: "RENCO LLC",
+    url: "https://renco.co",
+  },
+  publisher: {
+    "@type": "Organization",
+    name: "RENCO LLC",
+    logo: {
+      "@type": "ImageObject",
+      url: "https://renco.co/og-image.png",
+    },
+  },
+  mainEntityOfPage: {
+    "@type": "WebPage",
+    "@id": url,
+  },
+};
+
+const breadcrumbSchema = {
+  "@context": "https://schema.org",
+  "@type": "BreadcrumbList",
+  itemListElement: [
+    { "@type": "ListItem", position: 1, name: "Home", item: "https://renco.co" },
+    { "@type": "ListItem", position: 2, name: "Blog", item: "https://renco.co/blog" },
+    {
+      "@type": "ListItem",
+      position: 3,
+      name: "Bathroom Remodel Timeline",
+      item: url,
+    },
+  ],
 };
 
 const phases = [
@@ -43,6 +104,14 @@ const phases = [
 export default function BathroomRemodelTimeline() {
   return (
     <div style={{ background: "#0E0E0E", color: "#F2EDE4", minHeight: "100vh" }}>
+      <script
+        type="application/ld+json"
+        dangerouslySetInnerHTML={{ __html: JSON.stringify(blogPostingSchema) }}
+      />
+      <script
+        type="application/ld+json"
+        dangerouslySetInnerHTML={{ __html: JSON.stringify(breadcrumbSchema) }}
+      />
       {/* Header Nav */}
       <nav className="px-6 py-4 flex items-center justify-between max-w-5xl mx-auto">
         <Link href="/" className="font-display text-xl" style={{ color: "#C9A96A" }}>

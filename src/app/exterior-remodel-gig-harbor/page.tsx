@@ -1,15 +1,72 @@
 import type { Metadata } from "next";
 import Link from "next/link";
 
+const description =
+  "Exterior remodeling in Gig Harbor and Pierce County. Siding, windows, doors, decks. Licensed & insured. 5.0★ Google rating. Free estimate.";
+
 export const metadata: Metadata = {
   title: "Exterior Remodel Gig Harbor & Pierce County | RENCO LLC",
-  description:
-    "Exterior remodeling in Gig Harbor and Pierce County. Siding, windows, doors, decks. Licensed & insured. 5.0★ Google rating. Free estimate.",
+  description,
+  alternates: {
+    canonical: "/exterior-remodel-gig-harbor",
+  },
+  openGraph: {
+    title: "Exterior Remodel Gig Harbor & Pierce County | RENCO LLC",
+    description,
+    type: "website",
+    url: "https://renco.co/exterior-remodel-gig-harbor",
+    siteName: "RENCO LLC",
+  },
+  twitter: {
+    card: "summary_large_image",
+    title: "Exterior Remodel Gig Harbor & Pierce County | RENCO LLC",
+    description,
+  },
+};
+
+const serviceSchema = {
+  "@context": "https://schema.org",
+  "@type": "Service",
+  serviceType: "Exterior Remodeling",
+  name: "Exterior Remodel in Gig Harbor",
+  description,
+  provider: {
+    "@type": "GeneralContractor",
+    name: "RENCO LLC",
+    telephone: "+12533892606",
+    url: "https://renco.co",
+  },
+  areaServed: [
+    { "@type": "City", name: "Gig Harbor" },
+    { "@type": "AdministrativeArea", name: "Pierce County" },
+  ],
+};
+
+const breadcrumbSchema = {
+  "@context": "https://schema.org",
+  "@type": "BreadcrumbList",
+  itemListElement: [
+    { "@type": "ListItem", position: 1, name: "Home", item: "https://renco.co" },
+    {
+      "@type": "ListItem",
+      position: 2,
+      name: "Exterior Remodel Gig Harbor",
+      item: "https://renco.co/exterior-remodel-gig-harbor",
+    },
+  ],
 };
 
 export default function ExteriorRemodelGigHarbor() {
   return (
     <div style={{ background: "#0E0E0E", color: "#F2EDE4", minHeight: "100vh" }}>
+      <script
+        type="application/ld+json"
+        dangerouslySetInnerHTML={{ __html: JSON.stringify(serviceSchema) }}
+      />
+      <script
+        type="application/ld+json"
+        dangerouslySetInnerHTML={{ __html: JSON.stringify(breadcrumbSchema) }}
+      />
       {/* Header Nav */}
       <nav className="px-6 py-4 flex items-center justify-between max-w-6xl mx-auto">
         <Link href="/" className="font-display text-xl" style={{ color: "#C9A96A" }}>
