@@ -137,7 +137,7 @@ export default function ReviewsSection() {
               </p>
               <div className="flex gap-4 mt-2">
                 <a
-                  href="https://www.google.com/maps/place/RENCO+LLC"
+                  href="https://www.google.com/maps/search/?api=1&query=RENCO+LLC+Gig+Harbor"
                   target="_blank"
                   rel="noopener noreferrer"
                   className="font-body text-xs tracking-widest uppercase text-[#C9A96A] border border-[rgba(201,169,106,0.3)] px-4 py-2 hover:bg-[rgba(201,169,106,0.05)] transition-colors"
@@ -145,7 +145,7 @@ export default function ReviewsSection() {
                   All Reviews
                 </a>
                 <a
-                  href="https://www.google.com/maps/place/RENCO+LLC"
+                  href="https://www.google.com/maps/search/?api=1&query=RENCO+LLC+Gig+Harbor"
                   target="_blank"
                   rel="noopener noreferrer"
                   className="font-body text-xs tracking-widest uppercase text-[#6B6560] hover:text-[#C9A96A] transition-colors px-4 py-2"
