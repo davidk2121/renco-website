@@ -20,7 +20,7 @@ export default function Footer() {
               Quality. Trust. Care. — Premium bathroom and home remodeling in Gig Harbor &amp; greater Seattle.
             </p>
             <p className="font-display text-sm italic text-[#6B6560]">
-              &ldquo;Whatever you do, work at it with all your heart.&rdquo;
+              &ldquo;And whatever you do, in word or deed, do everything in the name of the Lord Jesus.&rdquo;
             </p>
             <p className="font-body text-xs tracking-widest uppercase text-[#3a3530] mt-1">
               Colossians 3:17

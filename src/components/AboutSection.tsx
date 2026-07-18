@@ -131,7 +131,7 @@ export default function AboutSection() {
               {[
                 "RENCO LLC was founded on a simple belief: the people who let you into their home deserve your absolute best. Every project — whether it’s a single bathroom or a full renovation — gets the same dedication we’d give our own families.",
                 "We’re a family-owned contractor serving Gig Harbor and the greater Seattle area (King & Pierce County). Vitaliy and David lead every project personally — you won’t talk to a salesperson or hand your home off to a subcontractor who’s never met you.",
-                "Our faith shapes the way we work. Colossians 3:17 — “whatever you do, do it with all your heart” — isn’t a tagline. It’s a standard that shows up in every tile joint and every conversation.",
+                "Our faith shapes the way we work. Colossians 3:17 — “whatever you do, in word or deed, do everything in the name of the Lord Jesus” — isn’t a tagline. It’s a standard that shows up in every tile joint and every conversation.",
               ].map((text, i) => (
                 <motion.p
                   key={i}
