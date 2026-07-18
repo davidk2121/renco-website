@@ -145,7 +145,7 @@ export default function ReviewsSection() {
                   All Reviews
                 </a>
                 <a
-                  href="https://www.google.com/maps/search/?api=1&query=RENCO+LLC+Gig+Harbor"
+                  href="https://g.page/r/CVxzGP3e6wwiEBM/review"
                   target="_blank"
                   rel="noopener noreferrer"
                   className="font-body text-xs tracking-widest uppercase text-[#6B6560] hover:text-[#C9A96A] transition-colors px-4 py-2"

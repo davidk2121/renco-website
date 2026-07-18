@@ -64,7 +64,7 @@ export default function Footer() {
             {/* Social links */}
             <div className="flex gap-4 mt-6">
               <a
-                href="https://www.google.com/maps/place/RENCO+LLC"
+                href="https://www.google.com/maps/search/?api=1&query=RENCO+LLC+Gig+Harbor"
                 target="_blank"
                 rel="noopener noreferrer"
                 className="w-8 h-8 border border-[rgba(201,169,106,0.2)] flex items-center justify-center text-[#6B6560] hover:text-[#C9A96A] hover:border-[#C9A96A] transition-all"
