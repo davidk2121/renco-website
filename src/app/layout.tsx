@@ -47,7 +47,11 @@ const jsonLd = {
   email: "david@renco.co",
   url: "https://renco.co",
   image: "https://renco.co/og-image.png",
-  sameAs: ["https://www.google.com/maps/place/RENCO+LLC"],
+  sameAs: [
+    "https://www.google.com/maps/search/?api=1&query=RENCO+LLC+Gig+Harbor",
+    "https://www.instagram.com/rencollc/",
+    "https://www.facebook.com/rencobiz",
+  ],
   areaServed: [
     { "@type": "City", name: "Gig Harbor" },
     { "@type": "City", name: "Tacoma" },

@@ -94,7 +94,7 @@ export default function Footer() {
                 </svg>
               </a>
               <a
-                href="https://facebook.com/rencollc"
+                href="https://www.facebook.com/rencobiz"
                 target="_blank"
                 rel="noopener noreferrer"
                 className="w-8 h-8 border border-[rgba(201,169,106,0.2)] flex items-center justify-center text-[#6B6560] hover:text-[#C9A96A] hover:border-[#C9A96A] transition-all"
