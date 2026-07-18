@@ -19,6 +19,7 @@ import StickyCTA from "@/components/StickyCTA";
 import ExitIntentPopup from "@/components/ExitIntentPopup";
 import IntroScreen from "@/components/IntroScreen";
 import ServiceAreaSection from "@/components/ServiceAreaSection";
+import MapSection from "@/components/MapSection";
 
 export default function Home() {
   const [formOpen, setFormOpen] = useState(false);
@@ -39,6 +40,7 @@ export default function Home() {
         <FAQSection />
         <BookCallSection />
         <ServiceAreaSection />
+        <MapSection />
         <GallerySection />
       </main>
       <Footer />
