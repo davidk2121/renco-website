@@ -58,8 +58,16 @@ const jsonLd = {
   ],
   address: {
     "@type": "PostalAddress",
+    streetAddress: "5800 Soundview Dr Unit 2, Bldg C",
+    addressLocality: "Gig Harbor",
     addressRegion: "WA",
+    postalCode: "98335",
     addressCountry: "US",
+  },
+  geo: {
+    "@type": "GeoCoordinates",
+    latitude: 47.3073,
+    longitude: -122.5793,
   },
   openingHoursSpecification: [
     {
