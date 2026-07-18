@@ -5,19 +5,17 @@ import Image from "next/image";
 import { motion, useInView, type Variants } from "framer-motion";
 
 const EXPO_OUT = [0.16, 1, 0.3, 1] as const;
-const BASE = "https://raw.githubusercontent.com/davidk2121/renco-website/main/public";
-
 const team = [
   {
     name: "Vitaliy",
     role: "Co-Founder · Lead Craftsman",
-    image: `${BASE}/vitaliy.jpg`,
+    image: "/vitaliy.PNG",
     bio: "Vitaliy leads RENCO's craftsmanship — the tile, the finishes, the details most people never notice but always feel. Two decades of building have made precision second nature.",
   },
   {
     name: "David",
     role: "Co-Founder · Project Lead",
-    image: `${BASE}/david.jpg`,
+    image: "/david.PNG",
     bio: "David is your point of contact from the first call to the final walkthrough. He keeps every project clear, on schedule, and true to what you envisioned.",
   },
 ];
@@ -105,7 +103,6 @@ export default function TeamSection() {
                   src={member.image}
                   alt={`${member.name} — ${member.role}, RENCO LLC`}
                   fill
-                  unoptimized
                   className="object-cover transition-transform duration-700 group-hover:scale-105"
                 />
                 <div className="absolute inset-0 border border-transparent group-hover:border-[rgba(201,169,106,0.3)] transition-all duration-500 pointer-events-none" />
