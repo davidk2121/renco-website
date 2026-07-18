@@ -26,6 +26,27 @@ export const metadata: Metadata = {
 
 const posts = [
   {
+    title: "How Much Does a Kitchen Remodel Cost in Seattle? (2026 Guide)",
+    href: "/blog/kitchen-remodel-cost-seattle",
+    date: "June 20, 2026",
+    excerpt:
+      "From a $20-40K refresh to $80K+ high-end builds — here's what Seattle kitchen remodels really cost in 2026, where the money goes, and how cabinets, countertops, and layout changes drive the price.",
+  },
+  {
+    title: "Tub-to-Walk-In Shower Conversion: What Gig Harbor Homeowners Should Know",
+    href: "/blog/walk-in-shower-conversion",
+    date: "June 20, 2026",
+    excerpt:
+      "Ditching the unused tub for a walk-in shower is one of the best bathroom upgrades you can make — if the waterproofing is done right. Costs, timeline, and aging-in-place design, explained.",
+  },
+  {
+    title: "Do You Need a Permit to Remodel in Washington State?",
+    href: "/blog/remodel-permits-washington",
+    date: "June 20, 2026",
+    excerpt:
+      "Plumbing, electrical, or walls? You need a permit. How the process differs in King vs. Pierce County, why unpermitted work haunts you at resale, and how RENCO handles all of it for you.",
+  },
+  {
     title: "How Much Does a Bathroom Remodel Cost in Gig Harbor? (2025 Guide)",
     href: "/blog/bathroom-remodel-cost-gig-harbor",
     date: "June 3, 2025",

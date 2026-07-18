@@ -201,6 +201,35 @@ export default function ExteriorRemodelGigHarbor() {
           to learn more.
         </p>
       </section>
+
+      {/* Related links */}
+      <section className="px-6 pb-20 max-w-3xl mx-auto">
+        <h2 className="font-display text-xl mb-5" style={{ color: "#F2EDE4" }}>
+          Related Reading
+        </h2>
+        <ul className="space-y-3 font-body">
+          <li>
+            <Link href="/full-home-renovation-seattle" style={{ color: "#C9A96A" }}>
+              Full-Home Renovation in Seattle
+            </Link>
+          </li>
+          <li>
+            <Link href="/kitchen-remodel-gig-harbor" style={{ color: "#C9A96A" }}>
+              Kitchen Remodeling in Gig Harbor
+            </Link>
+          </li>
+          <li>
+            <Link href="/blog/remodel-permits-washington" style={{ color: "#C9A96A" }}>
+              Do You Need a Permit to Remodel in Washington?
+            </Link>
+          </li>
+          <li>
+            <Link href="/blog/questions-to-ask-contractor" style={{ color: "#C9A96A" }}>
+              10 Questions to Ask Before Hiring a Contractor
+            </Link>
+          </li>
+        </ul>
+      </section>
     </div>
   );
 }

@@ -218,7 +218,15 @@ export default function QuestionsToAskContractor() {
           <p className="font-body mb-6" style={{ color: "#9A9388" }}>
             RENCO is happy to answer every question on this list before you commit to
             anything. Estimates are free, consultations are pressure-free, and
-            everything we agree on goes in writing.
+            everything we agree on goes in writing. See our{" "}
+            <Link href="/bathroom-remodel-gig-harbor" style={{ color: "#C9A96A" }}>
+              bathroom remodeling
+            </Link>{" "}
+            and{" "}
+            <Link href="/kitchen-remodel-seattle" style={{ color: "#C9A96A" }}>
+              kitchen remodeling
+            </Link>{" "}
+            services to learn how we work.
           </p>
           <Link
             href="/#estimate"

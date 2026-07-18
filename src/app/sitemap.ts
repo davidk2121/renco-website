@@ -35,6 +35,24 @@ export default function sitemap(): MetadataRoute.Sitemap {
       priority: 0.9,
     },
     {
+      url: "https://renco.co/bathroom-remodel-tacoma",
+      lastModified,
+      changeFrequency: "monthly",
+      priority: 0.8,
+    },
+    {
+      url: "https://renco.co/bathroom-remodel-seattle",
+      lastModified,
+      changeFrequency: "monthly",
+      priority: 0.8,
+    },
+    {
+      url: "https://renco.co/kitchen-remodel-gig-harbor",
+      lastModified,
+      changeFrequency: "monthly",
+      priority: 0.8,
+    },
+    {
       url: "https://renco.co/blog",
       lastModified,
       changeFrequency: "weekly",
@@ -54,6 +72,24 @@ export default function sitemap(): MetadataRoute.Sitemap {
     },
     {
       url: "https://renco.co/blog/questions-to-ask-contractor",
+      lastModified,
+      changeFrequency: "monthly",
+      priority: 0.6,
+    },
+    {
+      url: "https://renco.co/blog/kitchen-remodel-cost-seattle",
+      lastModified,
+      changeFrequency: "monthly",
+      priority: 0.6,
+    },
+    {
+      url: "https://renco.co/blog/walk-in-shower-conversion",
+      lastModified,
+      changeFrequency: "monthly",
+      priority: 0.6,
+    },
+    {
+      url: "https://renco.co/blog/remodel-permits-washington",
       lastModified,
       changeFrequency: "monthly",
       priority: 0.6,

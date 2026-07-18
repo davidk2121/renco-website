@@ -252,7 +252,11 @@ export default function BathroomRemodelTimeline() {
           </h3>
           <p className="font-body mb-6" style={{ color: "#9A9388" }}>
             RENCO provides free estimates that include a realistic project schedule —
-            not just a number, but a plan. Serving Gig Harbor, Seattle, and surrounding areas.
+            not just a number, but a plan. Learn more about our{" "}
+            <Link href="/bathroom-remodel-gig-harbor" style={{ color: "#C9A96A" }}>
+              bathroom remodeling in Gig Harbor
+            </Link>{" "}
+            or get started below. Serving Gig Harbor, Seattle, and surrounding areas.
           </p>
           <Link
             href="/#estimate"

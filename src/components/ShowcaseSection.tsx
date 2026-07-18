@@ -14,24 +14,32 @@ const showcasePairs = [
     label: "Master Bath",
     before: `${BASE}/ba-bathroom-1-before.jpg`,
     after: `${BASE}/ba-bathroom-1-after.jpg`,
+    beforeAlt: "Before photo of dated master bathroom prior to RENCO remodel in Gig Harbor",
+    afterAlt: "After photo of remodeled master bathroom with custom tile and walk-in shower by RENCO LLC",
   },
   {
     id: 2,
     label: "Guest Bath",
     before: `${BASE}/ba-bathroom-2-before.jpg`,
     after: `${BASE}/ba-bathroom-2-after.jpg`,
+    beforeAlt: "Before photo of worn guest bathroom prior to remodel by RENCO",
+    afterAlt: "After photo of renovated guest bathroom with new vanity and tile work by RENCO LLC",
   },
   {
     id: 3,
     label: "Kitchen",
     before: `${BASE}/ba-kitchen-1-before.jpg`,
     after: `${BASE}/ba-kitchen-1-after.jpg`,
+    beforeAlt: "Before photo of outdated kitchen prior to RENCO remodel in the Seattle area",
+    afterAlt: "After photo of remodeled kitchen with new cabinetry and countertops by RENCO LLC",
   },
   {
     id: 4,
     label: "Full Renovation",
     before: `${BASE}/ba-fullhome-1%20-before.jpg`,
     after: `${BASE}/ba-fullhome-1-after.jpg`,
+    beforeAlt: "Before photo of home interior prior to full renovation by RENCO",
+    afterAlt: "After photo of complete home renovation by RENCO LLC in Gig Harbor, WA",
   },
 ];
 
@@ -54,6 +62,8 @@ function SliderCard({ pair, index }: { pair: typeof showcasePairs[0]; index: num
           className="aspect-[4/3] w-full"
           beforeLabel="Before"
           afterLabel="After"
+          beforeAlt={pair.beforeAlt}
+          afterAlt={pair.afterAlt}
         />
         <div className="absolute inset-0 border border-transparent group-hover:border-[rgba(201,169,106,0.3)] transition-all duration-500 pointer-events-none" />
       </div>

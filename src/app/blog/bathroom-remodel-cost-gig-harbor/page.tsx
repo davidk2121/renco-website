@@ -240,7 +240,10 @@ export default function BathroomRemodelCostGigHarbor() {
             Ready to Get a Real Estimate?
           </h3>
           <p className="font-body mb-6" style={{ color: "#9A9388" }}>
-            RENCO provides free, detailed estimates for bathroom remodels in Gig Harbor
+            RENCO provides free, detailed estimates for{" "}
+            <Link href="/bathroom-remodel-gig-harbor" style={{ color: "#C9A96A" }}>
+              bathroom remodels in Gig Harbor
+            </Link>{" "}
             and across Pierce County. No pressure, no games — just a clear picture of
             what your project will cost.
           </p>

@@ -200,6 +200,35 @@ export default function BathroomRemodelGigHarbor() {
           to see our full range of services.
         </p>
       </section>
+
+      {/* Related links */}
+      <section className="px-6 pb-20 max-w-3xl mx-auto">
+        <h2 className="font-display text-xl mb-5" style={{ color: "#F2EDE4" }}>
+          Related Reading
+        </h2>
+        <ul className="space-y-3 font-body">
+          <li>
+            <Link href="/bathroom-remodel-tacoma" style={{ color: "#C9A96A" }}>
+              Bathroom Remodeling in Tacoma
+            </Link>
+          </li>
+          <li>
+            <Link href="/bathroom-remodel-seattle" style={{ color: "#C9A96A" }}>
+              Bathroom Remodeling in Seattle &amp; King County
+            </Link>
+          </li>
+          <li>
+            <Link href="/blog/bathroom-remodel-cost-gig-harbor" style={{ color: "#C9A96A" }}>
+              How Much Does a Bathroom Remodel Cost in Gig Harbor?
+            </Link>
+          </li>
+          <li>
+            <Link href="/blog/walk-in-shower-conversion" style={{ color: "#C9A96A" }}>
+              Tub-to-Walk-In Shower Conversion Guide
+            </Link>
+          </li>
+        </ul>
+      </section>
     </div>
   );
 }

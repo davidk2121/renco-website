@@ -9,6 +9,8 @@ interface BeforeAfterSliderProps {
   className?: string;
   beforeLabel?: string;
   afterLabel?: string;
+  beforeAlt?: string;
+  afterAlt?: string;
 }
 
 function SliderImage({
@@ -49,6 +51,8 @@ export default function BeforeAfterSlider({
   className = "",
   beforeLabel = "Before",
   afterLabel = "After",
+  beforeAlt = "Before photo of home space prior to remodel by RENCO LLC",
+  afterAlt = "After photo of completed remodel by RENCO LLC in the Gig Harbor and Seattle area",
 }: BeforeAfterSliderProps) {
   const [position, setPosition] = useState(50);
   const [dragging, setDragging] = useState(false);
@@ -100,7 +104,7 @@ export default function BeforeAfterSlider({
     >
       {/* After image (full background) */}
       <div className="relative w-full h-full">
-        <SliderImage src={after} alt={afterLabel} label={afterLabel} />
+        <SliderImage src={after} alt={afterAlt} label={afterLabel} />
       </div>
 
       {/* Before image (clipped to left portion) */}
@@ -108,7 +112,7 @@ export default function BeforeAfterSlider({
         className="absolute inset-0 overflow-hidden"
         style={{ clipPath: `inset(0 ${100 - position}% 0 0)` }}
       >
-        <SliderImage src={before} alt={beforeLabel} label={beforeLabel} />
+        <SliderImage src={before} alt={beforeAlt} label={beforeLabel} />
       </div>
 
       {/* Divider line */}

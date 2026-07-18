@@ -15,7 +15,7 @@ const stages = [
     title: "The room you avoid showing guests.",
     body: "Cracked grout. Dated tile. Fixtures from another decade. You've learned to look past it — but guests notice. Every shower is a reminder of what could be.",
     image: "https://raw.githubusercontent.com/davidk2121/renco-website/main/public/before-1.jpg",
-    alt: "Dated bathroom before remodel",
+    alt: "Before photo of dated bathroom with cracked grout and aged fixtures prior to RENCO remodel",
     accent: "#9A9388",
   },
   {
@@ -25,7 +25,7 @@ const stages = [
     title: "Nothing happens until you understand it.",
     body: "We walk every inch with you. Materials in hand. No approval signature until you've seen exactly what's going where — and why. Design that reflects how you actually live.",
     image: "https://raw.githubusercontent.com/davidk2121/renco-website/main/public/during-plan-1.jpg",
-    alt: "Design consultation and planning phase",
+    alt: "RENCO design consultation with material samples during bathroom remodel planning",
     accent: "#C9A96A",
   },
   {
@@ -35,7 +35,7 @@ const stages = [
     title: "Precision laid one tile at a time.",
     body: "Our crew treats your home with the same care we'd give our own. Clean work. Straight lines. No shortcuts. Craftsmanship you can see in every grout joint.",
     image: "https://raw.githubusercontent.com/davidk2121/renco-website/main/public/during-1.jpg",
-    alt: "Tile installation during bathroom remodel",
+    alt: "RENCO craftsman installing custom tile during a bathroom remodel in Gig Harbor",
     accent: "#C9A96A",
   },
   {
@@ -45,7 +45,7 @@ const stages = [
     title: "Fall in love with your home again.",
     body: "This is what it was all for. The moment you walk in and it stops you — because it's exactly what you imagined, only better.",
     image: "https://raw.githubusercontent.com/davidk2121/renco-website/main/public/after-1.jpg",
-    alt: "Completed luxury bathroom remodel",
+    alt: "Completed luxury bathroom remodel with walk-in shower by RENCO LLC in Gig Harbor, WA",
     accent: "#E2C792",
     isReveal: true,
     beforeImage: "https://raw.githubusercontent.com/davidk2121/renco-website/main/public/before-1.jpg",
@@ -151,6 +151,8 @@ export default function StorySection() {
                       before={stage.beforeImage}
                       after={stage.afterImage}
                       className="w-full h-full"
+                      beforeAlt="Before photo of dated bathroom prior to RENCO remodel"
+                      afterAlt="After photo of completed luxury bathroom remodel by RENCO LLC in Gig Harbor"
                     />
                   ) : (
                     <StoryImage src={stage.image} alt={stage.alt} />

@@ -202,6 +202,35 @@ export default function FullHomeRenovationSeattle() {
           to see our full range of services.
         </p>
       </section>
+
+      {/* Related links */}
+      <section className="px-6 pb-20 max-w-3xl mx-auto">
+        <h2 className="font-display text-xl mb-5" style={{ color: "#F2EDE4" }}>
+          Related Reading
+        </h2>
+        <ul className="space-y-3 font-body">
+          <li>
+            <Link href="/kitchen-remodel-seattle" style={{ color: "#C9A96A" }}>
+              Kitchen Remodeling in Seattle
+            </Link>
+          </li>
+          <li>
+            <Link href="/bathroom-remodel-seattle" style={{ color: "#C9A96A" }}>
+              Bathroom Remodeling in Seattle &amp; King County
+            </Link>
+          </li>
+          <li>
+            <Link href="/blog/remodel-permits-washington" style={{ color: "#C9A96A" }}>
+              Do You Need a Permit to Remodel in Washington?
+            </Link>
+          </li>
+          <li>
+            <Link href="/blog/kitchen-remodel-cost-seattle" style={{ color: "#C9A96A" }}>
+              How Much Does a Kitchen Remodel Cost in Seattle?
+            </Link>
+          </li>
+        </ul>
+      </section>
     </div>
   );
 }
